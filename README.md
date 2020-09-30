@@ -8,11 +8,15 @@
 
 > API Go Boilerplate using Echo and Viper
 
-## Install
+## Use this boilerplate
+
+With GitHub CLI : 
 
 ```sh
-TODO
+gh repo create [name] --template Akecel/api-goilerplate
 ```
+
+Or use the button "Use this template" above
 
 ## Usage
 
