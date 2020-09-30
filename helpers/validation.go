@@ -24,3 +24,9 @@ func ParamValidation(next echo.HandlerFunc) echo.HandlerFunc {
 		return next(c)
 	}
 }
+
+// CheckPasswordHash compare the hash of the password with the password used by the user
+func CheckPasswordHash(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
+}
