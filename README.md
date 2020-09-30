@@ -18,6 +18,12 @@ gh repo create [name] --template Akecel/api-goilerplate
 
 Or use the button "Use this template" above
 
+## Configuration
+
+* Rename the file "config.example.yml" to "config.yml".
+* Set your application & database configuration into config.yml (don't forget to modify docker-compose.yml for your database too)
+* Rename your modules in go.mod
+
 ## Usage
 
 ```sh
