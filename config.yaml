@@ -1,0 +1,6 @@
+APP_NAME: gechoplate
+DB_HOST: db
+DB_PORT: 3306
+DB_NAME: database
+DB_USER: user
+DB_PASSWORD: password
