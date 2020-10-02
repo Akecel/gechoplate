@@ -6,7 +6,6 @@
   </a>
 </p>
 
-
 <p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000" />
 
@@ -23,10 +22,9 @@
   </a>
 </p>
 
-
 ## Introduction
 
-Goilerplate is a [Echo v4](https://github.com/labstack/echo) boilerplate  to design simple Rest APIs in Golang. Using the MVC design pattern, it provides a JWT authentication system, a configuration file system thanks to [Viper](https://github.com/spf13/viper). It also contain a complete routing system and pre-configured helpers. 
+Goilerplate is a [Echo v4](https://github.com/labstack/echo) boilerplate  to design simple Rest APIs in Golang. Using the MVC design pattern, it provides a JWT authentication system, a configuration file system thanks to [Viper](https://github.com/spf13/viper). It also contain a complete routing system and pre-configured helpers.
 
 Feel free to check the [Echo documentation](https://echo.labstack.com/guide) too use this template properly.
 
@@ -40,7 +38,7 @@ This template contains a docker compose with Go and MySQL and a SQL dump migrati
 
 ## Use this boilerplate
 
-With [GitHub CLI](https://cli.github.com/) : 
+With [GitHub CLI](https://cli.github.com/) :
 
 ```sh
 $ gh repo create [name] --template Akecel/api-goilerplate
@@ -79,23 +77,20 @@ TODO
 TODO
 ```
 
-## Author
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/Akecel">
-        <img src="https://github.com/Akecel.png" width="100px;"><br>
-        <b>Axel Rayer</b>
-      </a>
-    </td>
-  </tr>
-</table>
+## Contributing
 
+Please read [CONTRIBUTING.md](https://github.com/Akecel/api-goilerplate/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
+## Authors
+
+* [**Akecel**](https://github.com/Akecel) - *Template author*
+* [**Hugo-T**](https://github.com/T-Hugo) - *Development environment author*
+
+See also the list of [contributors](https://github.com/Akecel/api-goilerplate/graphs/contributors) who participated in this project.
 
 ## Licence
 
-[MIT](https://github.com/Akecel/api-goilerplate/blob/master/LICENCE)
+This project is licensed under the [MIT License](https://opensource.org/licenses)  - see the [LICENSE.md](https://github.com/Akecel/api-goilerplate/blob/master/LICENCE) file for details.
 
 
 ## Show your support
