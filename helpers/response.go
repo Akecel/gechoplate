@@ -1,5 +1,4 @@
-
-package helper
+package helpers
 
 var (
 	// EmptyValue define an empty value for error message

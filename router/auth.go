@@ -1,8 +1,8 @@
 package router
 
 import (
-	"gechoplate/controller"
-	
+	controller "gechoplate/controllers"
+
 	"github.com/labstack/echo/v4"
 )
 

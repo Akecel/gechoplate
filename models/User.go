@@ -1,10 +1,10 @@
-package model
+package models
 
 import (
 	"database/sql"
 	"errors"
 
-	db "api-goilerplate/database"
+	db "gechoplate/database"
 )
 
 // User defines the structure of the user entity
@@ -33,4 +33,3 @@ func GetUserByEmail(userEmail string) (User, error) {
 
 	return user, nil
 }
-

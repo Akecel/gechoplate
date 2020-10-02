@@ -1,8 +1,10 @@
 package router
 
 import (
-	"gechoplate/controller"
-	"gechoplate/helper"
+	"net/http"
+
+	controller "gechoplate/controllers"
+	helper "gechoplate/helpers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -13,7 +15,9 @@ import (
 func SetAPIRoutes(e *echo.Echo) {
 
 	// Public group
-	e.GET("/", func(c echo.Context) error {
+	e.GET("/", controller.Index)
+
+	e.GET("/routes", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, viper.GetString("APP_NAME"), e.Routes()))
 	})
 

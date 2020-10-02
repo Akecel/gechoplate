@@ -1,13 +1,15 @@
-package helper
+package helpers
 
 import (
-	e "gechoplate/model"
+	"time"
+
+	e "gechoplate/models"
 
 	"github.com/dgrijalva/jwt-go"
 )
 
-// getJWTToken create a new JWT token for users.
-func getJWTToken(res e.User) (t string, err error) {
+// GetJWTToken create a new JWT token for users.
+func GetJWTToken(res e.User) (t string, err error) {
 	// Create token
 	token := jwt.New(jwt.SigningMethodHS256)
 

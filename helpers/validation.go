@@ -1,10 +1,11 @@
-package helper
+package helpers
 
 import (
 	"net/http"
 	"regexp"
 
 	"github.com/labstack/echo/v4"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // ParamValidation validate the paramater of the request.
