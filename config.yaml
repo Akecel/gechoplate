@@ -1,4 +1,4 @@
-APP_NAME: gechoplate
+APP_NAME: Gechoplate
 DB_HOST: db
 DB_PORT: 3306
 DB_NAME: database
