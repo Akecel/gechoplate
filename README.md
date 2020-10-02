@@ -45,6 +45,12 @@ $ gh repo create [name] --template Akecel/gechoplate
 
 Or use the button **[Use this template](https://github.com/Akecel/gechoplate/generate)** above
 
+You can also clone this repository :
+
+```sh
+$ git clone https://github.com/Akecel/gechoplate.git
+```
+
 ## Configuration
 
 Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a configuration file system, you will need to set your environement file to use Goilerplate :
