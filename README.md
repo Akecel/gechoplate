@@ -53,7 +53,7 @@ $ git clone https://github.com/Akecel/gechoplate.git
 
 ## Configuration
 
-Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a configuration file system, you will need to set your environement file to use Goilerplate :
+Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a configuration file system, you will need to set your environement file to use it :
 
 ```bash
 $ cp .env.example .env
