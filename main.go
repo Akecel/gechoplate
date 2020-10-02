@@ -2,9 +2,9 @@
 package main
 
 import (
-	c "config"
-	db "database"
-	r "router"
+	c "api-goilerplate/config"
+	db "api-goilerplate/database"
+	r "api-goilerplate/router"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

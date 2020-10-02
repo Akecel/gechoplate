@@ -1,7 +1,7 @@
 package helper
 
 import (
-	e "entity"
+	e "api-goilerplate/model"
 
 	"github.com/dgrijalva/jwt-go"
 )

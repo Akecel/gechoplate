@@ -1,8 +1,8 @@
 package router
 
 import (
-	"controller"
-	"helper"
+	"api-goilerplate/controller"
+	"api-goilerplate/helper"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

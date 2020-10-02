@@ -1,7 +1,8 @@
 package router
 
 import (
-	"controller"
+	"api-goilerplate/controller"
+	
 	"github.com/labstack/echo/v4"
 )
 

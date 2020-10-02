@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"errors"
 
-	db "database"
+	db "api-goilerplate/database"
 )
 
 // User defines the structure of the user entity
