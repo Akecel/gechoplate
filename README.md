@@ -1,4 +1,4 @@
-<h1 align="center"> Welcome to Gechoplate 🚀</h1>
+<h1 align="center"> Let's use Gechoplate 🚀</h1>
 
 <p align="center">
   <a href="https://github.com/labstack/echo" target="_blank">
@@ -22,7 +22,7 @@
   </a>
 </p>
 
-## Introduction
+## About Gechoplate
 
 Gechoplate is a [Echo v4](https://github.com/labstack/echo) boilerplate  to design simple Rest APIs in Golang. Using the MVC design pattern, it provides a JWT authentication system, a configuration file system thanks to [Viper](https://github.com/spf13/viper). It also contain a complete routing system and pre-configured helpers.
 
@@ -41,7 +41,7 @@ Gechoplate contains a docker compose with Go and MySQL and a SQL dump migration 
 With [GitHub CLI](https://cli.github.com/) :
 
 ```sh
-$ gh repo create [name] --template Akecel/api-goilerplate
+$ gh repo create [name] --template Akecel/gechoplate
 ```
 
 Or use the button **[Use this template](https://github.com/Akecel/gechoplate/generate)** above
