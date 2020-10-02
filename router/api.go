@@ -8,7 +8,6 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"github.com/spf13/viper"
 )
 
 // SetAPIRoutes define all apis routes.
@@ -18,7 +17,7 @@ func SetAPIRoutes(e *echo.Echo) {
 	e.GET("/", controller.Index)
 
 	e.GET("/routes", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, viper.GetString("APP_NAME"), e.Routes()))
+		return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "All routes", e.Routes()))
 	})
 
 	// Restricted group

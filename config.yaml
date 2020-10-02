@@ -1,3 +1,4 @@
+APP_URL: http:localhost:1323
 APP_NAME: Gechoplate
 DB_HOST: db
 DB_PORT: 3306
