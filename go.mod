@@ -1,4 +1,4 @@
-module api-goilerplate
+module gechoplate
 
 go 1.14
 

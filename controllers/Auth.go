@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"time"
 
-	"api-goilerplate/model"
-	"api-goilerplate/helper"
+	"gechoplate/model"
+	"gechoplate/helper"
 
 	"github.com/labstack/echo/v4"
 	"golang.org/x/crypto/bcrypt"

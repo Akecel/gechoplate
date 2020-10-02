@@ -1,7 +1,7 @@
 package helper
 
 import (
-	e "api-goilerplate/model"
+	e "gechoplate/model"
 
 	"github.com/dgrijalva/jwt-go"
 )

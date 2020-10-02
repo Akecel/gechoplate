@@ -1,6 +1,7 @@
 /*
 *********************************************************************
-API Go Boilerplate
+Gechoplate
+Go Echo Boilerplate for Rest APIs
 *********************************************************************
 Name: MySQL Sample Database
 Version 1
