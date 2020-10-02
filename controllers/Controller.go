@@ -11,5 +11,5 @@ import (
 
 // Index display all routes of the application.
 func Index(c echo.Context) error {
-	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, viper.GetString("APP_NAME"), helper.EmptyValue))
+	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, viper.GetString("APP_NAME"), "Use '/routes' to see all routes of the application"))
 }
