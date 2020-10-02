@@ -1,4 +1,4 @@
-<h1 align="center">Go-Boilerplate for Rest API 🚀</h1>
+<h1 align="center">Go-Boilerplate for Rest APIs 🚀</h1>
 
 <p align="center">
   <a href="https://github.com/labstack/echo" target="_blank">
@@ -22,8 +22,6 @@
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
 </p>
-
----
 
 
 ## Introduction
@@ -82,17 +80,18 @@ TODO
 ```
 
 ## Author
-
 <table>
   <tr>
     <td align="center">
       <a href="https://github.com/Akecel">
-        <img src="https://github.com/Akecel.png" width="120px;" style="border-radius:100px;"><br>
+        <img src="https://github.com/Akecel.png" width="100px;"><br>
         <b>Axel Rayer</b>
       </a>
     </td>
   </tr>
 </table>
+
+
 
 ## Licence
 
