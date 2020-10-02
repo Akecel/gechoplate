@@ -18,7 +18,7 @@
   </a>
 
   <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" />
   </a>
 </p>
 
@@ -33,7 +33,6 @@ Feel free to check the [Echo documentation](https://echo.labstack.com/guide) too
 Gechoplate contains a docker compose with Go and MySQL and a SQL dump migration system.
 
 * [Docker](https://www.docker.com/)
-
 * [Docker Compose](https://docs.docker.com/compose/install/)
 
 ## Use this boilerplate
@@ -48,15 +47,15 @@ Or use the button **[Use this template](https://github.com/Akecel/gechoplate/gen
 
 ## Configuration
 
-Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a configuration file system, you will need to set your configuration file to use Goilerplate :
+Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a configuration file system, you will need to set your environement file to use Goilerplate :
 
 ```bash
 $ cp .env.example .env
 ```
 
-```bash
-//.env
+Docker-compose and Gechoplate use the same environment variables, so you have only one file to configure :
 
+```bash
 APP_URL=http:localhost:1323
 APP_NAME=Gechoplate
 DB_HOST=db
