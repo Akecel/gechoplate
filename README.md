@@ -51,18 +51,19 @@ Or use the button **[Use this template](https://github.com/Akecel/gechoplate/gen
 Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a configuration file system, you will need to set your configuration file to use Goilerplate :
 
 ```bash
-$ cp config.example.yaml config.yaml
+$ cp .env.example .env
 ```
 
 ```bash
-//config.yml
+//.env
 
-APP_NAME: gechoplate
-DB_HOST: db
-DB_PORT: 3306
-DB_NAME: database
-DB_USER: user
-DB_PASSWORD: password
+APP_URL=http:localhost:1323
+APP_NAME=Gechoplate
+DB_HOST=db
+DB_PORT=3306
+DB_NAME=database
+DB_USER=user
+DB_PASSWORD=password
 ```
 
 ## Usage

@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./config.yaml:/config.yaml
+      - ./.env:/.env
     ports:
       - 1323:80
 
