@@ -73,9 +73,47 @@ DB_PASSWORD=password
 
 ## Usage
 
+### Makefile
+
+Gechoplate use a Makefile to manage all commands of the project, you can display the list of commands with :
+
 ```sh
-TODO
+$ make help
+Usage: make <command>
+
+Commands:
+  help                   Provides help information on available commands
+  compose/build          Build all Docker images of the project
+  compose/up             Start all containers (in the background)
+  compose/down           Stops and deletes containers.
+  compose/purge          Stops and deletes containers, volumes, images and networks.
+  compose/rebuild        Rebuild the project
+  urls                   Get project's URL
 ```
+
+### Run application
+
+Start the project with :
+
+```sh
+$ make compose/up
+Creating network "gechoplate_default" with the default driver
+Creating gechoplate_db_1 ... done
+Creating gechoplate_go_1 ... done
+
+
+ _____           _                 _       _
+|  __ \         | |               | |     | |
+| |  \/ ___  ___| |__   ___  _ __ | | __ _| |_ ___
+| | __ / _ \/ __|  _ \ / _ \|  _ \| |/ _  | __/ _ \
+| |_\ \  __/ (__| | | | (_) | |_) | | (_| | ||  __/
+ \____/\___|\___|_| |_|\___/|  __/|_|\__ _|\__\___|
+                            | |
+                            |_|
+
+```
+
+You can now access the api: [http://localhost:1323/](http://localhost:1323/).
 
 ## Test
 
