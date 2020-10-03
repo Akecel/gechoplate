@@ -7,15 +7,18 @@
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000" />
 
   <a href="https://godoc.org/github.com/Akecel/gechoplate" target="_blank">
     <img alt="godoc" src="https://godoc.org/github.com//Akecel/gechoplate?status.svg" />
   </a>
 
+  <img alt="build" src="https://github.com/Akecel/gechoplate/workflows/build/badge.svg?branch=master" />
+  
   <a href="https://goreportcard.com/report/github.com/Akecel/gechoplate" target="_blank">
     <img alt="goReport" src="https://goreportcard.com/badge/github.com/Akecel/gechoplate" />
   </a>
+
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000" />
 
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" />
