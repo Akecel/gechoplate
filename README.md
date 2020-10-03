@@ -117,9 +117,7 @@ You can now access the api: [http://localhost:1323/](http://localhost:1323/).
 
 ## Test
 
-```sh
-TODO
-```
+[Echo](https://github.com/labstack/echo) provide a complete test system for your application, for more details on the testing process of echo, check the [documentation](https://echo.labstack.com/guide/testing).
 
 ## Contributing
 
