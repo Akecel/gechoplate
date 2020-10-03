@@ -6,6 +6,5 @@ import (
 
 // InitRoutes initiates all routes.
 func InitRoutes(e *echo.Echo) {
-	SetAuthRoutes(e)
 	SetAPIRoutes(e)
 }

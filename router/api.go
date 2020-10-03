@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	controller "gechoplate/controllers"
-	helper "gechoplate/helpers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -17,8 +16,13 @@ func SetAPIRoutes(e *echo.Echo) {
 	e.GET("/", controller.Index)
 
 	e.GET("/routes", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "All routes", e.Routes()))
+		return c.JSON(http.StatusOK, e.Routes())
 	})
+
+	// Authentification routes
+	e.POST("/login", controller.Login)
+	e.POST("/regsiter", controller.Register)
+	e.GET("/logout", controller.Logout)
 
 	// Restricted group
 	r := e.Group("/api")
