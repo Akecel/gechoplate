@@ -33,7 +33,8 @@ jobs:
             curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
             dep ensure
         fi
-
+    - name: Config
+      run: cp .env.example .env
     - name: Build
       run: make compose/up
     - name: Test
