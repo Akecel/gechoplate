@@ -120,7 +120,17 @@ You can now access the api: [http://localhost:1323/](http://localhost:1323/).
 
 ## Test
 
-[Echo](https://github.com/labstack/echo) provide a complete test system for your application, for more details on the testing process of echo, check the [documentation](https://echo.labstack.com/guide/testing).
+Gechoplate has a *tests* directory containing all the test files for each controller.
+The test files are generated using [gotests](https://github.com/cweill/gotests).
+
+Simply use the test go command to run your tests :
+
+```sh
+$ cd tests
+$ go test
+PASS
+ok      gechoplate/tests        0.029s
+```
 
 ## Contributing
 
