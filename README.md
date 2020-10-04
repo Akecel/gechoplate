@@ -6,15 +6,19 @@
   </a>
 </p>
 
-<p align="center">
+<div align="center">
 
-  [![Go Doc](https://godoc.org/github.com//Akecel/gechoplate?status.svg)](https://godoc.org/github.com/Akecel/gechoplat)
+<p>
+
+  [![Go Doc](https://godoc.org/github.com//Akecel/gechoplate?status.svg)](https://godoc.org/github.com/Akecel/gechoplate)
   ![Build](https://github.com/Akecel/gechoplate/workflows/build/badge.svg?branch=master)
   [![Go Report](https://goreportcard.com/badge/github.com/Akecel/gechoplate)](https://goreportcard.com/report/github.com/Akecel/gechoplate)
   ![Version](https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000)
   ![Licence](https://img.shields.io/badge/License-MIT-blue.svg)
 
 </p>
+
+</div>
 
 ## About Gechoplate
 
