@@ -10,6 +10,7 @@ services:
       - db
     volumes:
       - ./.env:/.env
+      - ./public:/public
     ports:
       - 1323:80
 
