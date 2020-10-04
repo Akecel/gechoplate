@@ -8,21 +8,12 @@
 
 <p align="center">
 
-  <a href="https://godoc.org/github.com/Akecel/gechoplate" target="_blank">
-    <img alt="godoc" src="https://godoc.org/github.com//Akecel/gechoplate?status.svg" />
-  </a>
+  [![Go Doc](https://godoc.org/github.com//Akecel/gechoplate?status.svg)](https://godoc.org/github.com/Akecel/gechoplat)
+  ![Build](https://github.com/Akecel/gechoplate/workflows/build/badge.svg?branch=master)
+  [![Go Report](https://goreportcard.com/badge/github.com/Akecel/gechoplate)](https://goreportcard.com/report/github.com/Akecel/gechoplate)
+  ![Version](https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000)
+  ![Licence](https://img.shields.io/badge/License-MIT-blue.svg)
 
-  <img alt="build" src="https://github.com/Akecel/gechoplate/workflows/build/badge.svg?branch=master" />
-  
-  <a href="https://goreportcard.com/report/github.com/Akecel/gechoplate" target="_blank">
-    <img alt="goReport" src="https://goreportcard.com/badge/github.com/Akecel/gechoplate" />
-  </a>
-
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000" />
-
-  <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" />
-  </a>
 </p>
 
 ## About Gechoplate
@@ -43,7 +34,7 @@ This boilerplate has been designed to be used by everyone and especially for dev
 
 ## Requirement
 
-Gechoplate comes with an all-in-one docker-compose including a Go build, a MySQL server and a SQL dump initialization system.
+Gechoplate comes with an all-in-one docker-compose including a Go build, a MySQL server and a SQL dump initialization system. 
 
 To use the boilerplate in an optimal way, docker is required.
 
@@ -68,13 +59,17 @@ $ git clone https://github.com/Akecel/gechoplate.git
 
 ## Configuration
 
-Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a complete configuration file system, you will need to set your environement file to run it :
+Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a complete configuration file system.
+
+You will need to set your environement file to run it :
 
 ```bash
 $ cp .env.example .env
 ```
 
-Docker-compose and Gechoplate use the same environment variables, this way you have only one file to configure :
+Docker-compose and Gechoplate use the same environment variables.
+
+This way you have only one file to configure :
 
 ```bash
 APP_URL=http:localhost:1323
@@ -90,7 +85,9 @@ DB_PASSWORD=password
 
 ### Makefile
 
-Gechoplate use a Makefile to manage all commands of the project, you can display the list of commands with :
+Gechoplate use a Makefile to manage all commands of the project.
+
+You can display the list of commands with :
 
 ```sh
 $ make help
@@ -132,7 +129,7 @@ You can now access the api: [http://localhost:1323/](http://localhost:1323/).
 
 ## Test
 
-Gechoplate has a *tests* directory containing all the test files for each controller.
+Gechoplate has a *tests* directory containing all the test files for each controller.\
 The test files are generated using [gotests](https://github.com/cweill/gotests).
 
 Simply use the test go command to run your tests :
@@ -146,7 +143,8 @@ ok      gechoplate/tests        0.029s
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/Akecel/gechoplate/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/Akecel/gechoplate/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process\
+for submitting pull requests to us.
 
 ## Authors
 
@@ -158,7 +156,6 @@ See also the list of [contributors](https://github.com/Akecel/gechoplate/graphs/
 ## Licence
 
 This project is licensed under the [MIT License](https://opensource.org/licenses)  - see the [LICENSE.md](https://github.com/Akecel/gechoplate/blob/master/LICENCE) file for details.
-
 
 ## Show your support
 
