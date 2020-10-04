@@ -1,9 +1,7 @@
 <h1 align="center"> Let's use Gechoplate 🚀</h1>
 
 <p align="center">
-  <a href="https://github.com/labstack/echo" target="_blank">
-    <img alt="echo" src="https://cdn.labstack.com/images/echo-logo.svg" width="40%"/>
-  </a>
+    <img alt="Gechoplate" src="public/gechoplate.png" width="90%"/>
 </p>
 
 <div align="center">
