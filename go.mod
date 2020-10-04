@@ -3,8 +3,6 @@ module gechoplate
 go 1.14
 
 require (
-	github.com/HETIC-MT-P2021/DB_RAYER_P01 v0.0.0-20200918202936-d59ff5febe4c
-	github.com/HETIC-MT-P2021/DB_RAYER_P01/api v0.0.0-20200918191639-9a1e315491cd
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/labstack/echo/v4 v4.1.16

@@ -27,13 +27,25 @@
 
 ## About Gechoplate
 
-Gechoplate is a [Echo v4](https://github.com/labstack/echo) boilerplate  to design simple Rest APIs in Golang. Using the MVC design pattern, it provides a JWT authentication system, a configuration file system thanks to [Viper](https://github.com/spf13/viper). It also contain a complete routing system and pre-configured helpers.
+Gechoplate is a simple MVC boilerplate to design Rest APIs in Golang. It provides several basic features like a JWT authentication system, a complete configuration file system and a highly optimized HTTP router.
 
-Feel free to check the [Echo documentation](https://echo.labstack.com/guide) too use this template properly.
+This boilerplate has been designed to be used by everyone and especially for developers new to the Go language, feel free to use it in your personnal or school projects !
+
+### Features
+
+* Highly optimized HTTP router & built-in Middleware with [Echo Framework](https://github.com/labstack/echo)
+* Easy and clean configuration file system with [Viper](https://github.com/spf13/viper)
+* JWT Authentification system with [jwt-go](https://github.com/dgrijalva/jwt-go)
+* MySQL connexion support with [Go-MySQL-Driver](https://github.com/go-sql-driver/mysql)
+* All in one [Docker compose](https://docs.docker.com/compose/install/) with a Go build and a MySQL server
+* Friendly automation tool for project management with *Make*
+* Preconfigured helpers like a HTTP parameter validator and a JSON response setter
 
 ## Requirement
 
-Gechoplate contains a docker compose with Go and MySQL and a SQL dump migration system.
+Gechoplate comes with an all-in-one docker-compose including a Go build, a MySQL server and a SQL dump initialization system.
+
+To use the boilerplate in an optimal way, docker is required.
 
 * [Docker](https://www.docker.com/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
@@ -56,13 +68,13 @@ $ git clone https://github.com/Akecel/gechoplate.git
 
 ## Configuration
 
-Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a configuration file system, you will need to set your environement file to use it :
+Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a complete configuration file system, you will need to set your environement file to run it :
 
 ```bash
 $ cp .env.example .env
 ```
 
-Docker-compose and Gechoplate use the same environment variables, so you have only one file to configure :
+Docker-compose and Gechoplate use the same environment variables, this way you have only one file to configure :
 
 ```bash
 APP_URL=http:localhost:1323
