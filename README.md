@@ -6,34 +6,41 @@
   </a>
 </p>
 
-<p align="center">
+<div align="center">
 
-  <a href="https://godoc.org/github.com/Akecel/gechoplate" target="_blank">
-    <img alt="godoc" src="https://godoc.org/github.com//Akecel/gechoplate?status.svg" />
-  </a>
+<p>
 
-  <img alt="build" src="https://github.com/Akecel/gechoplate/workflows/build/badge.svg?branch=master" />
-  
-  <a href="https://goreportcard.com/report/github.com/Akecel/gechoplate" target="_blank">
-    <img alt="goReport" src="https://goreportcard.com/badge/github.com/Akecel/gechoplate" />
-  </a>
+  [![Go Doc](https://godoc.org/github.com//Akecel/gechoplate?status.svg)](https://godoc.org/github.com/Akecel/gechoplate)
+  ![Build](https://github.com/Akecel/gechoplate/workflows/build/badge.svg?branch=master)
+  [![Go Report](https://goreportcard.com/badge/github.com/Akecel/gechoplate)](https://goreportcard.com/report/github.com/Akecel/gechoplate)
+  ![Version](https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000)
+  ![Licence](https://img.shields.io/badge/License-MIT-blue.svg)
 
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000" />
-
-  <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" />
-  </a>
 </p>
+
+</div>
 
 ## About Gechoplate
 
-Gechoplate is a [Echo v4](https://github.com/labstack/echo) boilerplate  to design simple Rest APIs in Golang. Using the MVC design pattern, it provides a JWT authentication system, a configuration file system thanks to [Viper](https://github.com/spf13/viper). It also contain a complete routing system and pre-configured helpers.
+Gechoplate is a simple MVC boilerplate to design Rest APIs in Golang. It provides several basic features like a JWT authentication system, a complete configuration file system and a highly optimized HTTP router.
 
-Feel free to check the [Echo documentation](https://echo.labstack.com/guide) too use this template properly.
+This boilerplate has been designed to be used by everyone and especially for developers new to the Go language, feel free to use it in your personnal or school projects !
+
+### Features
+
+* Highly optimized HTTP router & built-in Middleware with [Echo Framework](https://github.com/labstack/echo)
+* Easy and clean configuration file system with [Viper](https://github.com/spf13/viper)
+* JWT Authentification system with [jwt-go](https://github.com/dgrijalva/jwt-go)
+* MySQL connexion support with [Go-MySQL-Driver](https://github.com/go-sql-driver/mysql)
+* All in one [Docker compose](https://docs.docker.com/compose/install/) with a Go build and a MySQL server
+* Friendly automation tool for project management with *Make*
+* Preconfigured helpers like a HTTP parameter validator and a JSON response setter
 
 ## Requirement
 
-Gechoplate contains a docker compose with Go and MySQL and a SQL dump migration system.
+Gechoplate comes with an all-in-one docker-compose including a Go build, a MySQL server and a SQL dump initialization system. 
+
+To use the boilerplate in an optimal way, docker is required.
 
 * [Docker](https://www.docker.com/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
@@ -56,13 +63,17 @@ $ git clone https://github.com/Akecel/gechoplate.git
 
 ## Configuration
 
-Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a configuration file system, you will need to set your environement file to use it :
+Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a complete configuration file system.
+
+You will need to set your environement file to run it :
 
 ```bash
 $ cp .env.example .env
 ```
 
-Docker-compose and Gechoplate use the same environment variables, so you have only one file to configure :
+Docker-compose and Gechoplate use the same environment variables.
+
+This way you have only one file to configure :
 
 ```bash
 APP_URL=http:localhost:1323
@@ -78,7 +89,9 @@ DB_PASSWORD=password
 
 ### Makefile
 
-Gechoplate use a Makefile to manage all commands of the project, you can display the list of commands with :
+Gechoplate use a Makefile to manage all commands of the project.
+
+You can display the list of commands with :
 
 ```sh
 $ make help
@@ -120,7 +133,17 @@ You can now access the api: [http://localhost:1323/](http://localhost:1323/).
 
 ## Test
 
-[Echo](https://github.com/labstack/echo) provide a complete test system for your application, for more details on the testing process of echo, check the [documentation](https://echo.labstack.com/guide/testing).
+Gechoplate has a *tests* directory containing all the test files for each controller.\
+The test files are generated using [gotests](https://github.com/cweill/gotests).
+
+Simply use the test go command to run your tests :
+
+```sh
+$ cd tests
+$ go test
+PASS
+ok      gechoplate/tests        0.029s
+```
 
 ## Contributing
 
@@ -136,7 +159,6 @@ See also the list of [contributors](https://github.com/Akecel/gechoplate/graphs/
 ## Licence
 
 This project is licensed under the [MIT License](https://opensource.org/licenses)  - see the [LICENSE.md](https://github.com/Akecel/gechoplate/blob/master/LICENCE) file for details.
-
 
 ## Show your support
 

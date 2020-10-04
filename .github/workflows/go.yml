@@ -38,4 +38,4 @@ jobs:
     - name: Build
       run: make compose/up
     - name: Test
-      run: go test -v .
+      run: cd tests && go test -v .
