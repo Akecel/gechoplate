@@ -103,7 +103,8 @@ Commands:
   compose/down           Stops and deletes containers.
   compose/purge          Stops and deletes containers, volumes, images and networks.
   compose/rebuild        Rebuild the project
-  urls                   Get project's URL
+  urls                   Get projects URL
+  env                    Generate env file
 ```
 
 ### Run application
