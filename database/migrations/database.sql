@@ -23,4 +23,4 @@ CREATE TABLE `user` (
 
 insert  into `user`(`id`,`last_name`,`first_name`,`email`,`password`) values 
 (1,'Doe','John','john.doe@gechoplate.com',
-'$2y$12$IL71JzMwtV1uMbGRB3hGhe1mGmLrBbKlnB2x4n0RwA0Px3Vx6WyiG'); /* <-- This is 'password' in Bcrypt for User testing */
+'$2y$12$f.u02sBB14r8R.mFUDu4k.HEf3gL/dJbdIuLnjHOuLgeipCEzrtry'); /* <-- This is 'password' in Bcrypt for User testing */

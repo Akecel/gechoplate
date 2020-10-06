@@ -29,9 +29,9 @@ func Login(c echo.Context) error {
 		return err
 	}
 
-	return c.JSON(http.StatusOK, map[string]string{
+	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "User connected", map[string]string{
 		"token": t,
-	})
+	}))
 }
 
 // Register create a new user in the database

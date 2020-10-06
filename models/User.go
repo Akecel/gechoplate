@@ -20,7 +20,7 @@ type User struct {
 func GetUserByEmail(userEmail string) (User, error) {
 	var user User
 
-	const query = `SELECT password FROM "user" WHERE email = ?`
+	const query = `SELECT password FROM user WHERE email = ?`
 	err := db.DB.QueryRow(query, userEmail).Scan(&user.Password)
 
 	if err == sql.ErrNoRows {
