@@ -37,7 +37,7 @@ compose/purge: ## Stops and deletes containers, volumes, images (all) and networ
 	@$(DOCKER_COMPOSE) down -v --rmi all
 
 .PHONY: compose/rebuild
-compose/rebuild: compose/down compose/build compose/up up -d about urls ## Rebuild the project
+compose/rebuild: compose/down compose/build compose/up ## Rebuild the project
 
 .PHONY: about
 about:
