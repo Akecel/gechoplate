@@ -71,8 +71,8 @@ urls: ## Get project's URL
 		} ; \
 	}'
 
-.PHONY: env check_env ## Generate env file
-env: check_env
+.PHONY: env check_env
+env: check_env ## Generate env file
 check_env:
 	@echo "${RED}You are about to create a new environment file. Are you sure ? [y/N] ${RESET}" && read ans && [ $${ans:-N} = y ]
 	@echo "${YELLOW}Environment file generation....${YELLOW}"
