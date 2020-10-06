@@ -70,3 +70,17 @@ urls: ## Get project's URL
 		printf "%*s %*s\n", index_tab, "", index_tab, urls[i]; i++ \
 		} ; \
 	}'
+
+ENV_FILE ?= "APP_URL=http:localhost:1323 \n%s\n
+			APP_NAME=Gechoplate \n%s\n
+			DB_HOST=db \n%s\n
+			DB_PORT=3306 \n%s\n
+			DB_NAME=database \n%s\n
+			DB_USER=user \n%s\n
+			DB_PASSWORD=password"
+
+.PHONY: env
+env: ## Generate env file
+	@echo "Environment file generation...."
+	@touch .env
+	
