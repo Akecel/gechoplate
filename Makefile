@@ -71,16 +71,13 @@ urls: ## Get project's URL
 		} ; \
 	}'
 
-ENV_FILE ?= "APP_URL=http:localhost:1323 \n%s\n
-			APP_NAME=Gechoplate \n%s\n
-			DB_HOST=db \n%s\n
-			DB_PORT=3306 \n%s\n
-			DB_NAME=database \n%s\n
-			DB_USER=user \n%s\n
-			DB_PASSWORD=password"
-
-.PHONY: env
-env: ## Generate env file
-	@echo "Environment file generation...."
+.PHONY: env check_env ## Generate env file
+env: check_env
+check_env:
+	@echo "${RED}You are about to create a new environment file. Are you sure ? [y/N] ${RESET}" && read ans && [ $${ans:-N} = y ]
+	@echo "${YELLOW}Environment file generation....${YELLOW}"
+	@rm -f .env
 	@touch .env
-	
+	@sleep 1
+	@printf '%s\n' 'APP_URL=http:localhost:1323' 'APP_NAME=Gechoplate' 'DB_HOST=db' 'DB_PORT=3306' 'DB_NAME=database' 'DB_USER=user' 'DB_PASSWORD=password' >> .env
+	@echo "${GREEN}The environment file has been successfully created, let's custom it ! ${GREEN}"
