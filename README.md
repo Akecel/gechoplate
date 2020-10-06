@@ -66,7 +66,7 @@ Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a complet
 To use the application, you will need to generate an environment file using :
 
 ```sh
-make env
+$ make env
 ```
 >**If an environment file already exists, it will be replaced by a new one, be careful not to overwrite your configuration.**
 
