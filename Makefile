@@ -72,9 +72,10 @@ urls: ## Get project's URL
 	}'
 
 .PHONY: env check_env
-env: check_env ## Generate env file
-check_env:
+env: ## Generate env file
 	@echo "${RED}You are about to create a new environment file. Are you sure ? [y/N] ${RESET}" && read ans && [ $${ans:-N} = y ]
+	@make check_env 
+check_env:
 	@echo "${YELLOW}Environment file generation....${YELLOW}"
 	@rm -f .env
 	@touch .env
