@@ -63,15 +63,16 @@ $ git clone https://github.com/Akecel/gechoplate.git
 
 Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a complete configuration file system.
 
-You will need to set your environement file to run it :
+To use the application, you will need to generate an environment file using :
 
-```bash
-$ cp .env.example .env
+```sh
+make env
 ```
+>**If an environment file already exists, it will be replaced by a new one, be careful not to overwrite your configuration.**
 
 Docker-compose and Gechoplate use the same environment variables.
 
-This way you have only one file to configure :
+This way, you only have this *.env* file to configure :
 
 ```bash
 APP_URL=http:localhost:1323
@@ -102,7 +103,8 @@ Commands:
   compose/down           Stops and deletes containers.
   compose/purge          Stops and deletes containers, volumes, images and networks.
   compose/rebuild        Rebuild the project
-  urls                   Get project's URL
+  urls                   Get projects URL
+  env                    Generate env file
 ```
 
 ### Run application

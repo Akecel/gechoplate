@@ -7,7 +7,6 @@ BOLD	:= $(shell printf "\033[1m")
 RESET	:= $(shell printf "\033[m")
 
 DOCKER_COMPOSE ?= docker-compose
-GO_WORKDIR ?= ""
 
 .PHONY: help
 help: ## Provides help information on available commands
@@ -37,7 +36,7 @@ compose/purge: ## Stops and deletes containers, volumes, images (all) and networ
 	@$(DOCKER_COMPOSE) down -v --rmi all
 
 .PHONY: compose/rebuild
-compose/rebuild: compose/down compose/build compose/up up -d about urls ## Rebuild the project
+compose/rebuild: compose/down compose/build compose/up ## Rebuild the project
 
 .PHONY: about
 about:
@@ -72,5 +71,14 @@ urls: ## Get project's URL
 		} ; \
 	}'
 
-%:
-	@$(MAKE) -s $(subst :,/,$@)
+.PHONY: env check_env
+env: ## Generate env file
+	@echo "${RED}You are about to create a new environment file. Are you sure ? [y/N] ${RESET}" && read ans && [ $${ans:-N} = y ]
+	@make check_env 
+check_env:
+	@echo "${YELLOW}Environment file generation....${YELLOW}"
+	@rm -f .env
+	@touch .env
+	@sleep 1
+	@printf '%s\n' 'APP_URL=http:localhost:1323' 'APP_NAME=Gechoplate' 'DB_HOST=db' 'DB_PORT=3306' 'DB_NAME=database' 'DB_USER=user' 'DB_PASSWORD=password' >> .env
+	@echo "${GREEN}The environment file has been successfully created, let's custom it ! ${GREEN}"

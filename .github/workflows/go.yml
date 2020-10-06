@@ -4,11 +4,9 @@ on:
   push:
     branches:
     - master
-    - develop
   pull_request:
     branches:
     - master
-    - develop 
 
 jobs:
 
@@ -34,7 +32,7 @@ jobs:
             dep ensure
         fi
     - name: Config
-      run: cp .env.example .env
+      run: make check_env
     - name: Build
       run: make compose/up
     - name: Test
