@@ -7,7 +7,6 @@ BOLD	:= $(shell printf "\033[1m")
 RESET	:= $(shell printf "\033[m")
 
 DOCKER_COMPOSE ?= docker-compose
-GO_WORKDIR ?= ""
 
 .PHONY: help
 help: ## Provides help information on available commands
@@ -71,6 +70,3 @@ urls: ## Get project's URL
 		printf "%*s %*s\n", index_tab, "", index_tab, urls[i]; i++ \
 		} ; \
 	}'
-
-%:
-	@$(MAKE) -s $(subst :,/,$@)
