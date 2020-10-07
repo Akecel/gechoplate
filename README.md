@@ -68,7 +68,7 @@ To use the application, you will need to generate an environment file using :
 ```sh
 $ make env
 ```
-`If an environment file already exists, it will be replaced by a new one, be careful not to overwrite your configuration.`
+⚠ If an environment file already exists, it will be replaced by a new one, be careful not to overwrite your configuration.
 
 Docker-compose and Gechoplate use the same environment variables.
 
