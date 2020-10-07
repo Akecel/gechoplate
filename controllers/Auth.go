@@ -26,13 +26,14 @@ func Login(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "Bad password"))
 	}
 
-	t, err := helper.GetJWTToken(user)
+	t, rt, err := helper.GenerateTokenPair(user)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "JWT error"))
 	}
 
 	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "User connected", map[string]string{
-		"token": t,
+		"refresh_token": rt,
+		"token":         t,
 	}))
 }
 
@@ -41,7 +42,18 @@ func Register(c echo.Context) error {
 	return nil
 }
 
-// Logout delete the token of the current user
-func Logout(c echo.Context) error {
-	return nil
+// RefreshToken refresh token
+func RefreshToken(c echo.Context) error {
+	user := model.User{}
+	refreshToken := c.FormValue("refresh_token")
+
+	t, rt, err := helper.RefreshJWTToken(refreshToken, user)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "JWT Resfresh error", "JWT error"))
+	}
+
+	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "JWT refreshed", map[string]string{
+		"refresh_token": rt,
+		"token":         t,
+	}))
 }

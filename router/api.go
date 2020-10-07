@@ -23,9 +23,11 @@ func SetAPIRoutes(e *echo.Echo) {
 	// Authentification routes
 	e.POST("/login", controller.Login)
 	e.POST("/regsiter", controller.Register)
-	e.GET("/logout", controller.Logout)
 
 	// Restricted group
 	r := e.Group("/api")
 	r.Use(middleware.JWT([]byte("secret")))
+
+	// Refresh token routes
+	r.POST("/refresh", controller.RefreshToken)
 }
