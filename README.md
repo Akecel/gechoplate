@@ -1,4 +1,4 @@
-<h1 align="center"> Let's use Gechoplate 🚀</h1>
+<h1 align="center"> Let's use Gechoplate 🦎</h1>
 
 <p align="center">
     <img alt="Gechoplate" src="public/gechoplate.png" width="90%"/>
@@ -68,11 +68,11 @@ To use the application, you will need to generate an environment file using :
 ```sh
 $ make env
 ```
-⚠ If an environment file already exists, it will be replaced by a new one, be careful not to overwrite your configuration.
+⚠  *If an environment file already exists, it will be replaced by a new one, be careful not to overwrite your configuration.*
 
-Docker-compose and Gechoplate use the same environment variables.
+To be beginners-friendly Docker-composite and Gechoplate use the same environment variables.
 
-This way, you only have this *.env* file to configure :
+This way, you only have the *.env* file to configure :
 
 ```bash
 APP_URL=http:localhost:1323
