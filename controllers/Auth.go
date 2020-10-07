@@ -18,17 +18,17 @@ func Login(c echo.Context) error {
 	user := model.User{}
 
 	if result := db.Gorm.Where("email = ?", email).First(&user); result.Error != nil {
-		return c.JSON(http.StatusBadRequest, result.Error)
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", result.Error))
 	}
 
 	match := helper.CheckPasswordHash(password, user.Password)
 	if match != true {
-		return c.JSON(http.StatusBadRequest, "Bad password")
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "Bad password"))
 	}
 
 	t, err := helper.GetJWTToken(user)
 	if err != nil {
-		return err
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "JWT error"))
 	}
 
 	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "User connected", map[string]string{
