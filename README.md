@@ -70,7 +70,7 @@ $ make env
 ```
 *If an environment file already exists, it will be replaced by a new one, **be careful not to overwrite your configuration.***
 
-To be beginners-friendly Docker-composite and Gechoplate use the same environment variables.
+To be beginners-friendly Docker-compose and Gechoplate use the same environment variables.
 
 This way, you only have the *.env* file to configure :
 
