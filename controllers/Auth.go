@@ -18,7 +18,7 @@ func Login(c echo.Context) error {
 	user := model.User{}
 
 	if result := db.Gorm.Where("email = ?", email).First(&user); result.Error != nil {
-		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", result.Error))
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "User doesn't exist"))
 	}
 
 	match := helper.CheckPasswordHash(password, user.Password)
