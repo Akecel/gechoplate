@@ -20,7 +20,7 @@
 
 ## About Gechoplate
 
-Gechoplate is a simple MVC boilerplate to design Rest APIs in Golang. It provides several basic features like a highly optimized HTTP router, a JWT authentication system, and a full-featured QueryBuilder.
+Gechoplate is a simple MVC boilerplate to design Rest APIs in Golang. It provides several basic features like a highly optimized HTTP router, a JWT authentication system and a full-featured QueryBuilder.
 
 >This boilerplate has been designed to be used by everyone and especially for developers new to the Go language, feel free to use it in your personnal or school projects !
 
@@ -68,7 +68,7 @@ To use the application, you will need to generate an environment file using :
 ```sh
 $ make env
 ```
-*If an environment file already exists, it will **be replaced by a new one, be careful not to overwrite your configuration.***
+*If an environment file already exists, it will be replaced by a new one, **be careful not to overwrite your configuration.***
 
 To be beginners-friendly Docker-composite and Gechoplate use the same environment variables.
 
@@ -88,7 +88,7 @@ DB_PASSWORD=password
 
 ### Makefile
 
-Gechoplate use a Makefile to manage all commands of the project.
+Gechoplate use a *Makefile* to manage all commands of the project.
 
 You can display the list of commands with :
 
