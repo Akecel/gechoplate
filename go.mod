@@ -9,4 +9,6 @@ require (
 	github.com/spf13/viper v1.6.3
 	golang.org/x/crypto v0.0.0-20200221231518-2aa609cf4a9d
 	gopkg.in/guregu/null.v4 v4.0.0
+	gorm.io/driver/mysql v1.0.2
+	gorm.io/gorm v1.20.2
 )

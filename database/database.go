@@ -1,17 +1,17 @@
 package database
 
 import (
-	"database/sql"
 	"fmt"
 
-	_ "github.com/go-sql-driver/mysql" // MySQL package
+	"gechoplate/models"
+
 	"github.com/spf13/viper"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
-var (
-	// DB var
-	DB *sql.DB
-)
+// Gorm public declaration
+var Gorm *gorm.DB
 
 // GetMySQLDataSourceName returns environment variable for database connection.
 func GetMySQLDataSourceName() string {
@@ -31,12 +31,20 @@ func Connect() {
 
 	dsn := GetMySQLDataSourceName()
 
-	DB, err = sql.Open("mysql", dsn)
+	Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
 
-	if err := DB.Ping(); err != nil {
+	sqlDB, err := Gorm.DB()
+	if err := sqlDB.Ping(); err != nil {
 		panic(err)
 	}
+
+	MigrateDatabase()
+}
+
+// MigrateDatabase migrate the database schema.
+func MigrateDatabase() {
+	Gorm.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.User{})
 }

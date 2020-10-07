@@ -3,6 +3,7 @@ package controllers
 import (
 	"net/http"
 
+	db "gechoplate/database"
 	helper "gechoplate/helpers"
 	model "gechoplate/models"
 
@@ -14,24 +15,25 @@ func Login(c echo.Context) error {
 	email := c.FormValue("email")
 	password := c.FormValue("password")
 
-	res, err := model.GetUserByEmail(email)
-	if err != nil {
-		return c.JSON(http.StatusBadRequest, err.Error())
+	user := model.User{}
+
+	if result := db.Gorm.Where("email = ?", email).First(&user); result.Error != nil {
+		return c.JSON(http.StatusBadRequest, result.Error)
 	}
 
-	match := helper.CheckPasswordHash(password, res.Password)
+	match := helper.CheckPasswordHash(password, user.Password)
 	if match != true {
 		return c.JSON(http.StatusBadRequest, "Bad password")
 	}
 
-	t, err := helper.GetJWTToken(res)
+	t, err := helper.GetJWTToken(user)
 	if err != nil {
 		return err
 	}
 
-	return c.JSON(http.StatusOK, map[string]string{
+	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "User connected", map[string]string{
 		"token": t,
-	})
+	}))
 }
 
 // Register create a new user in the database
