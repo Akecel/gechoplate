@@ -68,7 +68,7 @@ To use the application, you will need to generate an environment file using :
 ```sh
 $ make env
 ```
-⚠  *If an environment file already exists, it will be replaced by a new one, be careful not to overwrite your configuration.*
+*If an environment file already exists, it will **be replaced by a new one, be careful not to overwrite your configuration.***
 
 To be beginners-friendly Docker-composite and Gechoplate use the same environment variables.
 
@@ -129,7 +129,7 @@ Creating gechoplate_go_1 ... done
 
 ```
 
-You can now access the api: [http://localhost:1323/](http://localhost:1323/).
+You can now access the API: [http://localhost:1323/](http://localhost:1323/).
 
 ## Test
 
