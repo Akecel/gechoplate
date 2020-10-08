@@ -20,7 +20,7 @@ func SetAPIRoutes(e *echo.Echo) {
 		return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "All routes", e.Routes()))
 	})
 
-	// Authentification routes
+	// Authenticationon routes
 	e.POST("/login", controller.Login)
 	e.POST("/regsiter", controller.Register)
 
