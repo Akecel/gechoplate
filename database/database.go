@@ -16,7 +16,7 @@ var Gorm *gorm.DB
 // GetMySQLDataSourceName returns environment variable for database connection.
 func GetMySQLDataSourceName() string {
 	return fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s",
+		"%s:%s@tcp(%s:%s)/%s?parseTime=true",
 		viper.GetString("DB_USER"),
 		viper.GetString("DB_PASSWORD"),
 		viper.GetString("DB_HOST"),
