@@ -8,7 +8,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// ParamValidation validate the paramater of the request.
+// ParamValidation validate the parameter of the request.
 func ParamValidation(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		paramKey := c.ParamNames()
