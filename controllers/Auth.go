@@ -49,7 +49,7 @@ func RefreshToken(c echo.Context) error {
 
 	t, rt, err := helper.RefreshJWTToken(refreshToken, user)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "JWT Resfresh error", "JWT error"))
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "JWT Refresh error", "JWT error"))
 	}
 
 	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "JWT refreshed", map[string]string{
