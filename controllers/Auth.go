@@ -17,12 +17,11 @@ func Login(c echo.Context) error {
 
 	user := model.User{}
 
-	if result := db.Gorm.Where("email = ?", email).First(&user); result.Error != nil {
+	if err := db.Gorm.Where("email = ?", email).First(&user).Error; err != nil {
 		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "User doesn't exist"))
 	}
 
-	match := helper.CheckPasswordHash(password, user.Password)
-	if match != true {
+	if match := helper.CheckPasswordHash(password, user.Password); match != true {
 		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "Bad password"))
 	}
 
@@ -39,7 +38,23 @@ func Login(c echo.Context) error {
 
 // Register create a new user in the database
 func Register(c echo.Context) error {
-	return nil
+	user := new(model.User)
+
+	if err := c.Bind(user); err != nil {
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Register error", err))
+	}
+
+	hashedPassword, err := helper.HashPassword(user.Password)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Register error", err))
+	}
+	user.Password = hashedPassword
+
+	if err := db.Gorm.Create(&user).Error; err != nil {
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Register error", err))
+	}
+
+	return c.JSON(http.StatusCreated, helper.SetResponse(http.StatusCreated, "User registered", user.ID))
 }
 
 // RefreshToken refresh token

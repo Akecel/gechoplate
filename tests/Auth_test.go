@@ -47,7 +47,7 @@ func TestRegister(t *testing.T) {
 	}
 }
 
-func TestLogout(t *testing.T) {
+func RefreshToken(t *testing.T) {
 	type args struct {
 		c echo.Context
 	}
@@ -60,7 +60,7 @@ func TestLogout(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if err := controllers.Logout(tt.args.c); (err != nil) != tt.wantErr {
+			if err := controllers.RefreshToken(tt.args.c); (err != nil) != tt.wantErr {
 				t.Errorf("Logout() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
