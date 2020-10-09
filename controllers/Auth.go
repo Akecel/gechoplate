@@ -17,31 +17,58 @@ func Login(c echo.Context) error {
 
 	user := model.User{}
 
-	if result := db.Gorm.Where("email = ?", email).First(&user); result.Error != nil {
+	if err := db.Gorm.Where("email = ?", email).First(&user).Error; err != nil {
 		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "User doesn't exist"))
 	}
 
-	match := helper.CheckPasswordHash(password, user.Password)
-	if match != true {
+	if match := helper.CheckPasswordHash(password, user.Password); match != true {
 		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "Bad password"))
 	}
 
-	t, err := helper.GetJWTToken(user)
+	t, rt, err := helper.GenerateTokenPair(user)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "JWT error"))
 	}
 
 	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "User connected", map[string]string{
-		"token": t,
+		"refresh_token": rt,
+		"token":         t,
 	}))
 }
 
 // Register create a new user in the database
 func Register(c echo.Context) error {
-	return nil
+	user := new(model.User)
+
+	if err := c.Bind(user); err != nil {
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Register error", err))
+	}
+
+	hashedPassword, err := helper.HashPassword(user.Password)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Register error", err))
+	}
+	user.Password = hashedPassword
+
+	if err := db.Gorm.Create(&user).Error; err != nil {
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Register error", err))
+	}
+
+	return c.JSON(http.StatusCreated, helper.SetResponse(http.StatusCreated, "User registered", user.ID))
 }
 
-// Logout delete the token of the current user
-func Logout(c echo.Context) error {
-	return nil
+// RefreshToken refresh token
+func RefreshToken(c echo.Context) error {
+	user := model.User{}
+	refreshToken := c.FormValue("refresh_token")
+
+	t, rt, err := helper.RefreshJWTToken(refreshToken, user)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "JWT Refresh error", "JWT error"))
+	}
+
+	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "JWT refreshed", map[string]string{
+		"refresh_token": rt,
+		"token":         t,
+	}))
 }

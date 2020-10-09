@@ -11,9 +11,8 @@ Version 1
 /*Schema for the table `users` */
 
 CREATE TABLE `users` (
-    `id`         int(11) NOT NULL,
-    `last_name`  varchar(50) NULL,
-    `first_name` varchar(50) NULL,
+    `last_name`  varchar(50),
+    `first_name` varchar(50),
     `email`      varchar(50) NOT NULL,
     `password`   varchar(255) NOT NULL,
     PRIMARY KEY (`id`)

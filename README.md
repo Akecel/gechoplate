@@ -97,14 +97,14 @@ $ make help
 Usage: make <command>
 
 Commands:
-  help                   Provides help information on available commands
-  compose/build          Build all Docker images of the project
-  compose/up             Start all containers (in the background)
+  help                   Provides help information on available commands.
+  compose/build          Build all Docker images of the project.
+  compose/up             Start all containers (in the background).
   compose/down           Stops and deletes containers.
   compose/purge          Stops and deletes containers, volumes, images and networks.
-  compose/rebuild        Rebuild the project
-  urls                   Get projects URL
-  env                    Generate env file
+  compose/rebuild        Rebuild all Docker images of the project.
+  urls                   Get projects URL.
+  env                    Generate env file.
 ```
 
 ### Run application

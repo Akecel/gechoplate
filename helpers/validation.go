@@ -5,10 +5,9 @@ import (
 	"regexp"
 
 	"github.com/labstack/echo/v4"
-	"golang.org/x/crypto/bcrypt"
 )
 
-// ParamValidation validate the paramater of the request.
+// ParamValidation validate the parameter of the request.
 func ParamValidation(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		paramKey := c.ParamNames()
@@ -24,10 +23,4 @@ func ParamValidation(next echo.HandlerFunc) echo.HandlerFunc {
 
 		return next(c)
 	}
-}
-
-// CheckPasswordHash compare the hash of the password with the password used by the user
-func CheckPasswordHash(password, hash string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-	return err == nil
 }

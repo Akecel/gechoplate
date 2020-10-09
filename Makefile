@@ -9,7 +9,7 @@ RESET	:= $(shell printf "\033[m")
 DOCKER_COMPOSE ?= docker-compose
 
 .PHONY: help
-help: ## Provides help information on available commands
+help: ## Provides help information on available commands.
 	@printf "Usage: make <command>\n\n"
 	@printf "Commands:\n"
 	@awk -F ':(.*)## ' '/^[a-zA-Z0-9%\\\/_.-]+:(.*)##/ { \
@@ -17,11 +17,11 @@ help: ## Provides help information on available commands
 	}' $(MAKEFILE_LIST)
 
 .PHONY: compose/build
-compose/build: ## Build all Docker images of the project
+compose/build: ## Build all Docker images of the project.
 	@$(DOCKER_COMPOSE) build
 
 .PHONY: compose/up
-compose/up: ## Start all containers (in the background)
+compose/up: ## Start all containers (in the background).
 	@$(DOCKER_COMPOSE) up -d 
 	@make about 
 	@make urls
@@ -36,7 +36,10 @@ compose/purge: ## Stops and deletes containers, volumes, images (all) and networ
 	@$(DOCKER_COMPOSE) down -v --rmi all
 
 .PHONY: compose/rebuild
-compose/rebuild: compose/down compose/build compose/up ## Rebuild the project
+compose/rebuild: ## Rebuild the project.
+	@make compose/down 
+	@make compose/build 
+	@make compose/up
 
 .PHONY: about
 about:
@@ -54,7 +57,7 @@ about:
 DOCKER_INPECT_FORMAT__AWK ?= "'\''{{.Name}} : {{range $$p, $$conf := .NetworkSettings.Ports}}{{$$p}} -> {{(index $$conf 0).HostIp}}:{{(index $$conf 0).HostPort}}\t{{end}}'\''"
 
 .PHONY: urls
-urls: ## Get project's URL
+urls: ## Get project's URL.
 	@echo "------------------------------------------------------------"
 	@echo "${GREEN}You can access your project at the following URLS:${RESET}"
 	@echo "------------------------------------------------------------"
@@ -72,7 +75,7 @@ urls: ## Get project's URL
 	}'
 
 .PHONY: env check_env
-env: ## Generate env file
+env: ## Generate env file.
 	@echo "${RED}You are about to create a new environment file. Are you sure ? [y/N] ${RESET}" && read ans && [ $${ans:-N} = y ]
 	@make check_env 
 check_env:
