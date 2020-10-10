@@ -18,19 +18,19 @@ func Login(c echo.Context) error {
 	user := models.User{}
 
 	if err := db.Gorm.Where("email = ?", email).First(&user).Error; err != nil {
-		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Connexion error", "User doesn't exist"))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Connexion error", "User doesn't exist"))
 	}
 
 	if match := helpers.CheckPasswordHash(password, user.Password); match != true {
-		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Connexion error", "Bad password"))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Connexion error", "Bad password"))
 	}
 
 	t, rt, err := helpers.GenerateTokenPair(user)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Connexion error", "JWT error"))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Connexion error", "JWT error"))
 	}
 
-	return c.JSON(http.StatusOK, helpers.SetResponse(http.StatusOK, "User connected", map[string]string{
+	return c.JSON(http.StatusOK, SetResponse(http.StatusOK, "User connected", map[string]string{
 		"refresh_token": rt,
 		"token":         t,
 	}))
@@ -41,20 +41,20 @@ func Register(c echo.Context) error {
 	user := new(models.User)
 
 	if err := c.Bind(user); err != nil {
-		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Register error", err))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err))
 	}
 
 	hashedPassword, err := helpers.HashPassword(user.Password)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Register error", err))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err))
 	}
 	user.Password = hashedPassword
 
 	if err := db.Gorm.Create(&user).Error; err != nil {
-		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Register error", err))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err))
 	}
 
-	return c.JSON(http.StatusCreated, helpers.SetResponse(http.StatusCreated, "User registered", user.ID))
+	return c.JSON(http.StatusCreated, SetResponse(http.StatusCreated, "User registered", user.ID))
 }
 
 // RefreshToken refresh token
@@ -64,10 +64,10 @@ func RefreshToken(c echo.Context) error {
 
 	t, rt, err := helpers.RefreshJWTToken(refreshToken, user)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "JWT Refresh error", "JWT error"))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "JWT Refresh error", "JWT error"))
 	}
 
-	return c.JSON(http.StatusOK, helpers.SetResponse(http.StatusOK, "JWT refreshed", map[string]string{
+	return c.JSON(http.StatusOK, SetResponse(http.StatusOK, "JWT refreshed", map[string]string{
 		"refresh_token": rt,
 		"token":         t,
 	}))
