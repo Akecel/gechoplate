@@ -3,8 +3,6 @@ package database
 import (
 	"fmt"
 
-	"gechoplate/models"
-
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -40,11 +38,4 @@ func Connect() {
 	if err := sqlDB.Ping(); err != nil {
 		panic(err)
 	}
-
-	MigrateDatabase()
-}
-
-// MigrateDatabase migrate the database schema.
-func MigrateDatabase() {
-	Gorm.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.User{})
 }
