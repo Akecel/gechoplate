@@ -16,6 +16,8 @@ func main() {
 	config.InitConfig()
 
 	database.Connect()
+	database.Migrate()
+	database.Seed()
 
 	e := echo.New()
 
