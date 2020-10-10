@@ -29,14 +29,14 @@ Gechoplate is a simple MVC boilerplate to design Rest APIs in Golang. It provide
 * Highly optimized HTTP router & built-in Middleware with [Echo Framework](https://github.com/labstack/echo)
 * Easy and clean configuration file system with [Viper](https://github.com/spf13/viper)
 * JWT Authentification system with [jwt-go](https://github.com/dgrijalva/jwt-go)
-* MySQL support including QueryBuilder with [GORM](https://github.com/go-gorm/gorm)
+* MySQL support including QueryBuilder, migration and seeding with [GORM](https://github.com/go-gorm/gorm)
 * All in one [Docker compose](https://docs.docker.com/compose/install/) with a Go build and a MySQL server
 * Friendly automation tool for project management with *Make*
 * Preconfigured helpers like a HTTP parameter validator and a JSON response setter
 
 ## Requirement
 
-Gechoplate comes with an all-in-one docker-compose including a Go build, a MySQL server and a SQL dump initialization system.
+Gechoplate comes with an all-in-one docker-compose including a Go build, a MySQL server.
 
 To use the boilerplate in an optimal way, docker is required.
 
