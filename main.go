@@ -2,9 +2,9 @@
 package main
 
 import (
-	c "gechoplate/config"
-	db "gechoplate/database"
-	r "gechoplate/router"
+	"gechoplate/config"
+	"gechoplate/database"
+	"gechoplate/router"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -13,13 +13,13 @@ import (
 // main launch all part of the project
 func main() {
 
-	c.InitConfig()
+	config.InitConfig()
 
-	db.Connect()
+	database.Connect()
 
 	e := echo.New()
 
-	r.InitRoutes(e)
+	router.InitRoutes(e)
 
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"http://localhost:3000"},

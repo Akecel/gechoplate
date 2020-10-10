@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	db "gechoplate/database"
-	helper "gechoplate/helpers"
-	model "gechoplate/models"
+	"gechoplate/helpers"
+	"gechoplate/models"
 
 	"github.com/labstack/echo/v4"
 )
@@ -15,22 +15,22 @@ func Login(c echo.Context) error {
 	email := c.FormValue("email")
 	password := c.FormValue("password")
 
-	user := model.User{}
+	user := models.User{}
 
 	if err := db.Gorm.Where("email = ?", email).First(&user).Error; err != nil {
-		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "User doesn't exist"))
+		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Connexion error", "User doesn't exist"))
 	}
 
-	if match := helper.CheckPasswordHash(password, user.Password); match != true {
-		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "Bad password"))
+	if match := helpers.CheckPasswordHash(password, user.Password); match != true {
+		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Connexion error", "Bad password"))
 	}
 
-	t, rt, err := helper.GenerateTokenPair(user)
+	t, rt, err := helpers.GenerateTokenPair(user)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Connexion error", "JWT error"))
+		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Connexion error", "JWT error"))
 	}
 
-	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "User connected", map[string]string{
+	return c.JSON(http.StatusOK, helpers.SetResponse(http.StatusOK, "User connected", map[string]string{
 		"refresh_token": rt,
 		"token":         t,
 	}))
@@ -38,36 +38,36 @@ func Login(c echo.Context) error {
 
 // Register create a new user in the database
 func Register(c echo.Context) error {
-	user := new(model.User)
+	user := new(models.User)
 
 	if err := c.Bind(user); err != nil {
-		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Register error", err))
+		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Register error", err))
 	}
 
-	hashedPassword, err := helper.HashPassword(user.Password)
+	hashedPassword, err := helpers.HashPassword(user.Password)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Register error", err))
+		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Register error", err))
 	}
 	user.Password = hashedPassword
 
 	if err := db.Gorm.Create(&user).Error; err != nil {
-		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "Register error", err))
+		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "Register error", err))
 	}
 
-	return c.JSON(http.StatusCreated, helper.SetResponse(http.StatusCreated, "User registered", user.ID))
+	return c.JSON(http.StatusCreated, helpers.SetResponse(http.StatusCreated, "User registered", user.ID))
 }
 
 // RefreshToken refresh token
 func RefreshToken(c echo.Context) error {
-	user := model.User{}
+	user := models.User{}
 	refreshToken := c.FormValue("refresh_token")
 
-	t, rt, err := helper.RefreshJWTToken(refreshToken, user)
+	t, rt, err := helpers.RefreshJWTToken(refreshToken, user)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, helper.SetResponse(http.StatusBadRequest, "JWT Refresh error", "JWT error"))
+		return c.JSON(http.StatusBadRequest, helpers.SetResponse(http.StatusBadRequest, "JWT Refresh error", "JWT error"))
 	}
 
-	return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "JWT refreshed", map[string]string{
+	return c.JSON(http.StatusOK, helpers.SetResponse(http.StatusOK, "JWT refreshed", map[string]string{
 		"refresh_token": rt,
 		"token":         t,
 	}))

@@ -3,8 +3,8 @@ package router
 import (
 	"net/http"
 
-	controller "gechoplate/controllers"
-	helper "gechoplate/helpers"
+	"gechoplate/controllers"
+	"gechoplate/helpers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -14,20 +14,20 @@ import (
 func SetAPIRoutes(e *echo.Echo) {
 
 	// Public group
-	e.GET("/", controller.Index)
+	e.GET("/", controllers.Index)
 
 	e.GET("/routes", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, helper.SetResponse(http.StatusOK, "All routes", e.Routes()))
+		return c.JSON(http.StatusOK, helpers.SetResponse(http.StatusOK, "All routes", e.Routes()))
 	})
 
 	// Authentication routes
-	e.POST("/login", controller.Login)
-	e.POST("/register", controller.Register)
+	e.POST("/login", controllers.Login)
+	e.POST("/register", controllers.Register)
 
 	// Restricted group
 	r := e.Group("/api")
 	r.Use(middleware.JWT([]byte("secret")))
 
 	// Refresh token routes
-	r.POST("/refresh", controller.RefreshToken)
+	r.POST("/refresh", controllers.RefreshToken)
 }
