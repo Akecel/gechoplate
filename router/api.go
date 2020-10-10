@@ -14,10 +14,8 @@ import (
 func SetAPIRoutes(e *echo.Echo) {
 
 	// Public group
-	e.GET("/", controllers.Index)
-
-	e.GET("/routes", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, helpers.SetResponse(http.StatusOK, "All routes", e.Routes()))
+	e.GET("/", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, controllers.SetResponse(http.StatusOK, "Welcome in "+viper.GetString("APP_NAME"), e.Routes()))
 	})
 
 	// Authentication routes
