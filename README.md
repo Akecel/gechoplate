@@ -47,7 +47,7 @@ To use the boilerplate in an optimal way, docker is required.
 
 With [GitHub CLI](https://cli.github.com/) :
 
-```sh
+```
 $ gh repo create [name] --template Akecel/gechoplate
 ```
 
@@ -55,7 +55,7 @@ Or use the button **[Use this template](https://github.com/Akecel/gechoplate/gen
 
 You can also clone this repository :
 
-```sh
+```
 $ git clone https://github.com/Akecel/gechoplate.git
 ```
 
@@ -65,7 +65,7 @@ Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a complet
 
 To use the application, you will need to generate an environment file using :
 
-```sh
+```
 $ make env
 ```
 *If an environment file already exists, it will be replaced by a new one, **be careful not to overwrite your configuration.***
@@ -74,7 +74,7 @@ To be beginners-friendly Docker-compose and Gechoplate use the same environment 
 
 This way, you only have the *.env* file to configure :
 
-```bash
+```
 APP_URL=http:localhost:1323
 APP_NAME=Gechoplate
 DB_HOST=db
@@ -92,7 +92,7 @@ Gechoplate use a *Makefile* to manage all commands of the project.
 
 You can display the list of commands with :
 
-```sh
+```
 $ make help
 Usage: make <command>
 
@@ -111,7 +111,7 @@ Commands:
 
 Start the project with :
 
-```sh
+```
 $ make compose/up
 Creating network "gechoplate_default" with the default driver
 Creating gechoplate_db_1 ... done
@@ -138,7 +138,7 @@ The test files are generated using [gotests](https://github.com/cweill/gotests).
 
 Simply use the test go command to run your tests :
 
-```sh
+```
 $ cd tests
 $ go test
 PASS
