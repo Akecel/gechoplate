@@ -41,17 +41,17 @@ func Register(c echo.Context) error {
 	user := new(models.User)
 
 	if err := c.Bind(user); err != nil {
-		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err.Error()))
 	}
 
 	hashedPassword, err := helpers.HashPassword(user.Password)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err.Error()))
 	}
 	user.Password = hashedPassword
 
 	if err := db.Gorm.Create(&user).Error; err != nil {
-		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err.Error()))
 	}
 
 	return c.JSON(http.StatusCreated, SetResponse(http.StatusCreated, "User registered", user.ID))
