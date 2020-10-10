@@ -157,7 +157,7 @@ See also the list of [contributors](https://github.com/Akecel/gechoplate/graphs/
 
 ## Licence
 
-This project is licensed under the [MIT License](https://opensource.org/licenses)  - see the [LICENSE.md](https://github.com/Akecel/gechoplate/blob/master/LICENCE) file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses)  - see the [LICENSE.md](https://github.com/Akecel/gechoplate/blob/master/LICENSE) file for details.
 
 ## Show your support
 
