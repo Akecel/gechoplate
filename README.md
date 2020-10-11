@@ -32,7 +32,6 @@ Gechoplate is a simple MVC boilerplate to design Rest APIs in Golang. It provide
 * MySQL support including QueryBuilder, migration and seeding with [GORM](https://github.com/go-gorm/gorm)
 * All in one [Docker compose](https://docs.docker.com/compose/install/) with a Go build and a MySQL server
 * Friendly automation tool for project management with *Make*
-* Preconfigured helpers like a HTTP parameter validator and a JSON response setter
 
 ## Requirement
 
@@ -158,7 +157,7 @@ See also the list of [contributors](https://github.com/Akecel/gechoplate/graphs/
 
 ## Licence
 
-This project is licensed under the [MIT License](https://opensource.org/licenses)  - see the [LICENSE.md](https://github.com/Akecel/gechoplate/blob/master/LICENCE) file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses)  - see the [LICENSE.md](https://github.com/Akecel/gechoplate/blob/master/LICENSE) file for details.
 
 ## Show your support
 

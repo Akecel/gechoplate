@@ -1,9 +1,4 @@
-package helpers
-
-var (
-	// EmptyValue define an empty value for error message
-	EmptyValue = make([]int, 0)
-)
+package controllers
 
 // Response defines the structure of the response entity.
 type Response struct {
@@ -16,6 +11,9 @@ type Status struct {
 	Code    int    `json:"code"`
 	Message string `json:"message"`
 }
+
+// EmptyValue define error data
+var EmptyValue = make([]int, 0)
 
 // SetResponse set the structure of the JSON response.
 func SetResponse(code int, message string, data interface{}) *Response {
