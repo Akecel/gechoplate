@@ -1,6 +1,7 @@
-package controllers
+package tests
 
 import (
+	"gechoplate/controllers"
 	"reflect"
 	"testing"
 )
@@ -14,13 +15,13 @@ func TestSetResponse(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want *Response
+		want *controllers.Response
 	}{
 		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := SetResponse(tt.args.code, tt.args.message, tt.args.data); !reflect.DeepEqual(got, tt.want) {
+			if got := controllers.SetResponse(tt.args.code, tt.args.message, tt.args.data); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("SetResponse() = %v, want %v", got, tt.want)
 			}
 		})
