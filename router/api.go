@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"gechoplate/controllers"
-	"gechoplate/helpers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -26,6 +25,12 @@ func SetAPIRoutes(e *echo.Echo) {
 	// Restricted group
 	r := e.Group("/api")
 	r.Use(middleware.JWT([]byte("secret")))
+
+	r.GET("/user/:id", controllers.GetUser, ParamValidation)
+	r.GET("/user", controllers.GetAllUser)
+	r.POST("/user", controllers.CreateUser)
+	r.PUT("/user/:id", controllers.UpdateUser, ParamValidation)
+	r.DELETE("/user/:id", controllers.DeleteUser, ParamValidation)
 
 	// Refresh token routes
 	r.POST("/refresh", controllers.RefreshToken)
