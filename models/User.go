@@ -18,9 +18,9 @@ type User struct {
 // APIUser defines the structure of the user api repsponse entity
 type APIUser struct {
 	ID        uint      `json:"id"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
 	LastName  string    `json:"last_name"`
 	FirstName string    `json:"first_name"`
 	Email     string    `json:"email"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
