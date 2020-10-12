@@ -9,7 +9,7 @@ import (
 // User defines the structure of the user entity
 type User struct {
 	gorm.Model
-	LastName  string `form:"last_name" gorm:"not nul; type:varchar(55)"`
+	LastName  string `form:"last_name" gorm:"not null; type:varchar(55)"`
 	FirstName string `form:"first_name" gorm:"not null; type:varchar(55)"`
 	Email     string `form:"email" gorm:"unique; not null; type:varchar(55)"`
 	Password  string `form:"password" gorm:"not null; type:varchar(255)"`
