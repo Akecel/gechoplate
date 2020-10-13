@@ -65,14 +65,12 @@ func Register(c echo.Context) error {
 
 // RefreshToken refresh token
 func RefreshToken(c echo.Context) error {
-	user := models.User{}
-
 	refreshToken := c.FormValue("refresh_token")
 	if refreshToken == "" {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "JWT Refresh error", "Missing refresh token"))
 	}
 
-	t, rt, err := helpers.RefreshJWTToken(refreshToken, user)
+	t, rt, err := helpers.RefreshJWTToken(refreshToken, models.User{})
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "JWT Refresh error", err.Error()))
 	}
