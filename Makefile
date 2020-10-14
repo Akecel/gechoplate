@@ -54,7 +54,7 @@ about:
 	@echo "${BOLD}                            |_|				${RESET}" 
 	@echo "\n"  
 
-DOCKER_INPECT_FORMAT__AWK ?= "'\''{{.Name}} : {{range $$p, $$conf := .NetworkSettings.Ports}}{{$$p}} -> {{(index $$conf 0).HostIp}}:{{(index $$conf 0).HostPort}}\t{{end}}'\''"
+DOCKER_INPECT_FORMAT__AWK ?= "'\''{{.Name}} : {{range $$p, $$confs := .NetworkSettings.Ports}}{{range $$conf := $$confs}}{{$$p}} -> {{$$conf.HostIp}}:{{$$conf.HostPort}}{{else}}{{end}}{{else}}No exposed ports{{end}}'\''"
 
 .PHONY: urls
 urls: ## Get project's URL.
@@ -73,6 +73,7 @@ urls: ## Get project's URL.
 		printf "%*s %*s\n", index_tab, "", index_tab, urls[i]; i++ \
 		} ; \
 	}'
+	@echo "\n"  
 
 .PHONY: env check_env
 env: ## Generate env file.

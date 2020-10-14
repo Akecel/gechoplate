@@ -7,18 +7,31 @@ import (
 	"gechoplate/helpers"
 	"gechoplate/models"
 
+	validation "github.com/go-ozzo/ozzo-validation/v4"
+	"github.com/go-ozzo/ozzo-validation/v4/is"
 	"github.com/labstack/echo/v4"
 )
 
 // Login verifies the identifiers and connects the user by creating a token.
 func Login(c echo.Context) error {
-	email := c.FormValue("email")
-	password := c.FormValue("password")
-
 	user := models.User{}
 
+	if err := c.Bind(&user); err != nil {
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err.Error()))
+	}
+
+	if err := validation.ValidateStruct(&user,
+		validation.Field(&user.Email, validation.Required, is.EmailFormat),
+		validation.Field(&user.Password, validation.Required),
+	); err != nil {
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Validation error", err.Error()))
+	}
+
+	email := user.Email
+	password := user.Password
+
 	if err := db.Gorm.Where("email = ?", email).First(&user).Error; err != nil {
-		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Connexion error", "User doesn't exist"))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Connexion error", err.Error()))
 	}
 
 	if match := helpers.CheckPasswordHash(password, user.Password); match != true {
@@ -27,7 +40,7 @@ func Login(c echo.Context) error {
 
 	t, rt, err := helpers.GenerateTokenPair(user)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Connexion error", "JWT error"))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Connexion error", err.Error()))
 	}
 
 	return c.JSON(http.StatusOK, SetResponse(http.StatusOK, "User connected", map[string]string{
@@ -38,10 +51,19 @@ func Login(c echo.Context) error {
 
 // Register create a new user in the database
 func Register(c echo.Context) error {
-	user := new(models.User)
+	user := models.User{}
 
-	if err := c.Bind(user); err != nil {
+	if err := c.Bind(&user); err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err.Error()))
+	}
+
+	if err := validation.ValidateStruct(&user,
+		validation.Field(&user.Email, validation.Required, is.EmailFormat),
+		validation.Field(&user.Password, validation.Required),
+		validation.Field(&user.LastName, validation.Required),
+		validation.Field(&user.FirstName, validation.Required),
+	); err != nil {
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Validation error", err.Error()))
 	}
 
 	hashedPassword, err := helpers.HashPassword(user.Password)
@@ -59,12 +81,14 @@ func Register(c echo.Context) error {
 
 // RefreshToken refresh token
 func RefreshToken(c echo.Context) error {
-	user := models.User{}
 	refreshToken := c.FormValue("refresh_token")
+	if refreshToken == "" {
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "JWT Refresh error", "Missing refresh token"))
+	}
 
-	t, rt, err := helpers.RefreshJWTToken(refreshToken, user)
+	t, rt, err := helpers.RefreshJWTToken(refreshToken, models.User{})
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "JWT Refresh error", "JWT error"))
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "JWT Refresh error", err.Error()))
 	}
 
 	return c.JSON(http.StatusOK, SetResponse(http.StatusOK, "JWT refreshed", map[string]string{

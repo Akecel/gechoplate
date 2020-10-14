@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"time"
 
-	e "gechoplate/models"
+	"gechoplate/models"
 
 	"github.com/dgrijalva/jwt-go"
 )
 
 // GenerateTokenPair create a new JWT token for users.
-func GenerateTokenPair(user e.User) (t string, rt string, err error) {
+func GenerateTokenPair(user models.User) (t string, rt string, err error) {
 	// Create token
 	token := jwt.New(jwt.SigningMethodHS256)
 
@@ -39,11 +39,8 @@ func GenerateTokenPair(user e.User) (t string, rt string, err error) {
 }
 
 // RefreshJWTToken refresh the JWT token for users.
-func RefreshJWTToken(refreshToken string, user e.User) (t string, rt string, err error) {
-
-	tokenReq := refreshToken
-
-	token, err := jwt.Parse(tokenReq, func(token *jwt.Token) (interface{}, error) {
+func RefreshJWTToken(refreshToken string, user models.User) (t string, rt string, err error) {
+	token, err := jwt.Parse(refreshToken, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 		}
