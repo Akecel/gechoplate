@@ -8,13 +8,15 @@ import (
 	"gechoplate/helpers"
 	"gechoplate/models"
 
+	validation "github.com/go-ozzo/ozzo-validation/v4"
+	"github.com/go-ozzo/ozzo-validation/v4/is"
 	"github.com/labstack/echo/v4"
 )
 
 // GetUser get data of one user
 func GetUser(c echo.Context) error {
 	user := models.User{}
-	userResponse := models.APIUser{}
+	userResponse := models.UserGet{}
 
 	userID, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -31,7 +33,7 @@ func GetUser(c echo.Context) error {
 // GetAllUser get data of all user
 func GetAllUser(c echo.Context) error {
 	user := models.User{}
-	usersResponse := []models.APIUser{}
+	usersResponse := []models.UserGet{}
 
 	if err := db.Gorm.Model(&user).Find(&usersResponse).Error; err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Users is empty", err.Error()))
@@ -42,11 +44,20 @@ func GetAllUser(c echo.Context) error {
 
 // CreateUser a new user
 func CreateUser(c echo.Context) error {
-	user := new(models.User)
-	userResponse := models.APIUser{}
+	user := models.User{}
+	userResponse := models.UserGet{}
 
-	if err := c.Bind(user); err != nil {
+	if err := c.Bind(&user); err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Creation error", err.Error()))
+	}
+
+	if err := validation.ValidateStruct(&user,
+		validation.Field(&user.Email, validation.Required, is.Email),
+		validation.Field(&user.Password, validation.Required),
+		validation.Field(&user.LastName, validation.Required),
+		validation.Field(&user.FirstName, validation.Required),
+	); err != nil {
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Validation error", err.Error()))
 	}
 
 	hashedPassword, err := helpers.HashPassword(user.Password)
@@ -55,34 +66,38 @@ func CreateUser(c echo.Context) error {
 	}
 	user.Password = hashedPassword
 
-	if err := db.Gorm.Create(&user).Error; err != nil {
+	if err := db.Gorm.Create(&user).First(&userResponse, user.ID).Error; err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Creation error", err.Error()))
 	}
-
-	db.Gorm.Model(&user).First(&userResponse, user.ID)
 
 	return c.JSON(http.StatusCreated, SetResponse(http.StatusCreated, "User created", userResponse))
 }
 
 // UpdateUser update the user
 func UpdateUser(c echo.Context) error {
-	user := new(models.User)
-	userResponse := models.APIUser{}
+	userUpdate := models.UserPut{}
+	userResponse := models.UserGet{}
 
 	userID, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Parameters error", err.Error()))
 	}
 
-	if err := c.Bind(user); err != nil {
+	if err := c.Bind(&userUpdate); err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Update error", err.Error()))
 	}
 
-	if err := db.Gorm.Select("last_name", "first_name", "email").Where("id = ?", userID).Save(&user).Error; err != nil {
-		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Update error", err.Error()))
+	if err := validation.ValidateStruct(&userUpdate,
+		validation.Field(&userUpdate.Email, validation.Required, is.Email),
+		validation.Field(&userUpdate.LastName, validation.Required),
+		validation.Field(&userUpdate.FirstName, validation.Required),
+	); err != nil {
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Validation error", err.Error()))
 	}
 
-	db.Gorm.Model(&user).First(&userResponse, user.ID)
+	if err := db.Gorm.Table("users").Save(&userUpdate).First(&userResponse, userID).Error; err != nil {
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Update error", err.Error()))
+	}
 
 	return c.JSON(http.StatusOK, SetResponse(http.StatusOK, "User updated", userResponse))
 }
