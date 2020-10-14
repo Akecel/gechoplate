@@ -1,4 +1,4 @@
-<h1 align="center"> Let's use Gechoplate 🦎</h1>
+<h1 align="center"> Let's use Gechoplate 🚀</h1>
 
 <p align="center">
     <img alt="Gechoplate" src="public/gechoplate.png" width="90%"/>
