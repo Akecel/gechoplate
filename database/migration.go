@@ -1,8 +1,13 @@
 package database
 
-import "gechoplate/models"
+import (
+	"fmt"
+	"gechoplate/models"
+)
 
 // Migrate migrate the database schema.
 func Migrate() {
-	Gorm.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.User{})
+	if err := Gorm.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models.User{}); err != nil {
+		panic(fmt.Errorf("Migration error: %s", err.Error()))
+	}
 }

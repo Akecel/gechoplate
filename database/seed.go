@@ -15,7 +15,8 @@ func Seed() {
 func UserSeeder(lastName string, firstName string, email string, password string) {
 	hashedPassword, err := helpers.HashPassword(password)
 	if err != nil {
-		fmt.Printf("Seeding error\n")
+		panic(fmt.Errorf("Seeding error: %s", err.Error()))
 	}
+
 	Gorm.FirstOrCreate(&models.User{LastName: lastName, FirstName: firstName, Email: email, Password: hashedPassword})
 }
