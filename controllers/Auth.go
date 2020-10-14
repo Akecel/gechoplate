@@ -7,16 +7,28 @@ import (
 	"gechoplate/helpers"
 	"gechoplate/models"
 
-	"github.com/go-playground/validator/v10"
+	validation "github.com/go-ozzo/ozzo-validation/v4"
+	"github.com/go-ozzo/ozzo-validation/v4/is"
 	"github.com/labstack/echo/v4"
 )
 
 // Login verifies the identifiers and connects the user by creating a token.
 func Login(c echo.Context) error {
-	email := c.FormValue("email")
-	password := c.FormValue("password")
-
 	user := models.User{}
+
+	if err := c.Bind(&user); err != nil {
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err.Error()))
+	}
+
+	if err := validation.ValidateStruct(&user,
+		validation.Field(&user.Email, validation.Required, is.EmailFormat),
+		validation.Field(&user.Password, validation.Required),
+	); err != nil {
+		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Validation error", err.Error()))
+	}
+
+	email := user.Email
+	password := user.Password
 
 	if err := db.Gorm.Where("email = ?", email).First(&user).Error; err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Connexion error", err.Error()))
@@ -39,14 +51,18 @@ func Login(c echo.Context) error {
 
 // Register create a new user in the database
 func Register(c echo.Context) error {
-	user := new(models.User)
-	validate := validator.New()
+	user := models.User{}
 
-	if err := c.Bind(user); err != nil {
+	if err := c.Bind(&user); err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Register error", err.Error()))
 	}
 
-	if err := validate.Struct(user); err != nil {
+	if err := validation.ValidateStruct(&user,
+		validation.Field(&user.Email, validation.Required, is.EmailFormat),
+		validation.Field(&user.Password, validation.Required),
+		validation.Field(&user.LastName, validation.Required),
+		validation.Field(&user.FirstName, validation.Required),
+	); err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Validation error", err.Error()))
 	}
 
