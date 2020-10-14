@@ -17,5 +17,5 @@ func UserSeeder(lastName string, firstName string, email string, password string
 	if err != nil {
 		fmt.Printf("Seeding error\n")
 	}
-	Gorm.Create(&models.User{LastName: lastName, FirstName: firstName, Email: email, Password: hashedPassword})
+	Gorm.FirstOrCreate(&models.User{LastName: lastName, FirstName: firstName, Email: email, Password: hashedPassword})
 }
