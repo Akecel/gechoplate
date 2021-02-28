@@ -52,7 +52,7 @@ func CreateUser(c echo.Context) error {
 	}
 
 	if err := validation.ValidateStruct(&user,
-		validation.Field(&user.Email, validation.Required, is.Email),
+		validation.Field(&user.Email, validation.Required, is.EmailFormat),
 		validation.Field(&user.Password, validation.Required),
 		validation.Field(&user.LastName, validation.Required),
 		validation.Field(&user.FirstName, validation.Required),
@@ -75,7 +75,7 @@ func CreateUser(c echo.Context) error {
 
 // UpdateUser update the user
 func UpdateUser(c echo.Context) error {
-	userUpdate := models.UserPut{}
+	user := models.User{}
 	userResponse := models.UserGet{}
 
 	userID, err := strconv.Atoi(c.Param("id"))
@@ -83,19 +83,19 @@ func UpdateUser(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Parameters error", err.Error()))
 	}
 
-	if err := c.Bind(&userUpdate); err != nil {
+	if err := c.Bind(&user); err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Update error", err.Error()))
 	}
 
-	if err := validation.ValidateStruct(&userUpdate,
-		validation.Field(&userUpdate.Email, validation.Required, is.Email),
-		validation.Field(&userUpdate.LastName, validation.Required),
-		validation.Field(&userUpdate.FirstName, validation.Required),
+	if err := validation.ValidateStruct(&user,
+		validation.Field(&user.Email, validation.Required, is.EmailFormat),
+		validation.Field(&user.LastName, validation.Required),
+		validation.Field(&user.FirstName, validation.Required),
 	); err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Validation error", err.Error()))
 	}
 
-	if err := db.Gorm.Table("users").Save(&userUpdate).First(&userResponse, userID).Error; err != nil {
+	if err := db.Gorm.Model(&user).Updates(&user).First(&userResponse, userID).Error; err != nil {
 		return c.JSON(http.StatusBadRequest, SetResponse(http.StatusBadRequest, "Update error", err.Error()))
 	}
 

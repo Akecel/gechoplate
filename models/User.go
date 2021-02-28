@@ -24,10 +24,3 @@ type UserGet struct {
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
-
-// UserPut defines the structure of the user update entity
-type UserPut struct {
-	LastName  string `form:"last_name"`
-	FirstName string `form:"first_name"`
-	Email     string `form:"email"`
-}
