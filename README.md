@@ -79,6 +79,8 @@ This way, you only have the *.env* file to configure :
 ```
 APP_URL=http:localhost:1323
 APP_NAME=Gechoplate
+
+DB_CONNECTION=mysql
 DB_HOST=db
 DB_NAME=database
 DB_USER=user
@@ -90,7 +92,7 @@ DB_PORT=3306
 
 By default Gechoplate uses MySQL, however you can use PostgreSQL very easily if you wish to do so : 
 
-* Comment/uncomment the different SQL containers in the *docker-compose* file depending on the database system you want to use :
+Chose your SQL containers in the *docker-compose* file depending on the database system you want to use :
 
 ```yml
   # MySQL Support
@@ -121,16 +123,16 @@ By default Gechoplate uses MySQL, however you can use PostgreSQL very easily if 
   #   ports:
   #     - 5432:5432
 ```
-*Don't forgret to change the DB_PORT in your .env file if you use PostgreSQL*
 
-* You will also have to modify the Gorm connector : 
+In addition, modify your *.env* file in order to fill in the PostgreSQL connector and change the port used :
 
-```go
-// MySQL connexion
-Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
-
-// PostgreSQL connexion
-//Gorm, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+```
+DB_CONNECTION=postgre
+DB_HOST=db
+DB_NAME=database
+DB_USER=user
+DB_PASSWORD=password
+DB_PORT=5432
 ```
 
 ### Module name customisation
