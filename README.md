@@ -142,7 +142,9 @@ import (
 
 	db "your_project/database"
 	"your_project/helpers"
-	"your_project/models"
+  "your_project/models"
+  
+)
 ```
 
 ## Usage
