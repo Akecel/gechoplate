@@ -27,11 +27,11 @@ func SetAPIRoutes(e *echo.Echo) {
 	r := e.Group("/api")
 	r.Use(middleware.JWT([]byte("secret")))
 
-	r.GET("/user/:id", controllers.GetUser, middlewares.ParamValidation)
-	r.GET("/user", controllers.GetAllUser)
+	r.GET("/user", controllers.GetAllUser, middlewares.IsAdmin)
+	r.GET("/user/:id", controllers.GetUser, middlewares.ParamValidation, middlewares.CanManageUser)
 	r.POST("/user", controllers.CreateUser)
-	r.PUT("/user/:id", controllers.UpdateUser, middlewares.ParamValidation)
-	r.DELETE("/user/:id", controllers.DeleteUser, middlewares.ParamValidation)
+	r.PUT("/user/:id", controllers.UpdateUser, middlewares.ParamValidation, middlewares.CanManageUser)
+	r.DELETE("/user/:id", controllers.DeleteUser, middlewares.ParamValidation, middlewares.CanManageUser)
 
 	// Refresh token routes
 	r.POST("/refresh", controllers.RefreshToken)
