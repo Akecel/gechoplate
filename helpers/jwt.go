@@ -7,6 +7,7 @@ import (
 	"gechoplate/models"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/labstack/echo/v4"
 )
 
 // GenerateTokenPair create a new JWT token for users.
@@ -54,4 +55,18 @@ func RefreshJWTToken(refreshToken string, user models.User) (t string, rt string
 	}
 
 	return
+}
+
+// RetrieveAdmin retrieve the Admin value of the user's JWT token.
+func RetrieveAdmin(c echo.Context) bool {
+	user := c.Get("user").(*jwt.Token)
+	claims := user.Claims.(jwt.MapClaims)
+	return claims["admin"].(bool)
+}
+
+// RetrieveUserID retrieve the UserID value of the user's JWT token.
+func RetrieveUserID(c echo.Context) uint {
+	user := c.Get("user").(*jwt.Token)
+	claims := user.Claims.(jwt.MapClaims)
+	return claims["id"].(uint)
 }
