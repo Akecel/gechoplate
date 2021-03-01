@@ -129,6 +129,22 @@ Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 //Gorm, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 ```
 
+Finally, to fully use this boilerplate for your projects, remember to change the name of the module in the go.mod file and to modify this name in all the project imports.
+
+```go
+module your_project
+```
+
+```go
+package controllers
+
+import (
+
+	db "your_project/database"
+	"your_project/helpers"
+	"your_project/models"
+```
+
 ## Usage
 
 ### Makefile
