@@ -61,6 +61,8 @@ $ git clone https://github.com/Akecel/gechoplate.git
 
 ## Configuration
 
+### Environment variable
+
 Gechoplate is using [Viper](https://github.com/spf13/viper) to provide a complete configuration file system.
 
 To use the application, you will need to generate an environment file using :
@@ -83,6 +85,8 @@ DB_USER=user
 DB_PASSWORD=password
 DB_PORT=3306
 ```
+
+### Database support
 
 By default Gechoplate uses MySQL, however you can use PostgreSQL very easily if you wish to do so : 
 
@@ -129,6 +133,8 @@ Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 //Gorm, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 ```
 
+### Module name customisation
+
 Finally, to fully use this boilerplate for your projects, remember to change the name of the module in the go.mod file and to modify this name in all the project imports.
 
 ```go
@@ -143,7 +149,7 @@ import (
   db "your_project/database"
   "your_project/helpers"
   "your_project/models"
-  
+
 )
 ```
 
