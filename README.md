@@ -121,7 +121,7 @@ By default Gechoplate uses MySQL, however you can use PostgreSQL very easily if 
   #   ports:
   #     - 5432:5432
 ```
-*Don't forgret to change the "DB_PORT" in your .env file if you use PostgreSQL*
+*Don't forgret to change the DB_PORT in your .env file if you use PostgreSQL*
 
 * You will also have to modify the Gorm connector : 
 
@@ -135,9 +135,9 @@ Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 ### Module name customisation
 
-Finally, to fully use this boilerplate for your projects, remember to change the name of the module in the go.mod file and to modify this name in all the project imports.
+Finally, to fully use this boilerplate for your projects, remember to change the name of the module in the *go.mod* file and to modify this name in all the project imports.
 
-```go
+```
 module your_project
 ```
 
