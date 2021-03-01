@@ -20,8 +20,7 @@ func CanManageUser(next echo.HandlerFunc) echo.HandlerFunc {
 		
 		admin := claims["admin"].(bool)
 		id := claims["id"].(uint)
-		paramValue := c.ParamValues()
-		if admin == true || id == paramValue {
+		if admin == true || id == strconv.Atoi(c.Param("id")) {
 			return next(c)
 		}
 		return c.JSON(http.StatusUnauthorized, controllers.SetResponse(http.StatusUnauthorized, "Authorization error", "User is not an administrator and is not authorized to manage this data"))
