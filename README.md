@@ -29,14 +29,14 @@ Gechoplate is a simple MVC boilerplate to design Rest APIs in Golang. It provide
 * Highly optimized HTTP router & built-in Middleware with [Echo Framework](https://github.com/labstack/echo)
 * Easy and clean configuration file system with [Viper](https://github.com/spf13/viper)
 * JWT Authentification system with [jwt-go](https://github.com/dgrijalva/jwt-go)
-* MySQL support including QueryBuilder, migration and seeding with [GORM](https://github.com/go-gorm/gorm)
+* MySQL/PostgreSQL support including QueryBuilder, migration and seeding with [GORM](https://github.com/go-gorm/gorm)
 * Easy and complete request data validation using [ozzo-validation](https://github.com/go-ozzo/ozzo-validation)
 * All in one [Docker compose](https://docs.docker.com/compose/install/) with a Go build and a MySQL server
 * Friendly automation tool for project management with *Make*
 
 ## Requirement
 
-Gechoplate comes with an all-in-one docker-compose including a Go build, a MySQL server.
+Gechoplate comes with an all-in-one docker-compose including a Go build, a MySQL or PostgreSQL server.
 
 To use the boilerplate in an optimal way, docker is required.
 
@@ -78,11 +78,58 @@ This way, you only have the *.env* file to configure :
 APP_URL=http:localhost:1323
 APP_NAME=Gechoplate
 DB_HOST=db
-DB_PORT=3306
 DB_NAME=database
 DB_USER=user
 DB_PASSWORD=password
+DB_PORT=3306
 ```
+
+By default Gechoplate uses MySQL, however you can use PostgreSQL very easily if you wish to do so : 
+
+Comment/uncomment the different SQL containers in the *docker-compose* file depending on the database system you want to use :
+
+```yml
+  # MySQL Support
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  # PostgreSQL Support
+  # db:
+  #   image: postgres:12.2-alpine
+  #   environment:
+  #     POSTGRES_DB: ${DB_NAME}
+  #     POSTGRES_USER: ${DB_USER}
+  #     POSTGRES_PASSWORD: ${DB_PASSWORD}
+  #     PGDATA: /data/postgres
+  #   volumes:
+  #     - db-data:/data/postgres
+  #   ports:
+  #     - 5432:5432
+```
+
+*Don't forgret to change the "DB_PORT" in your .env file if you use PostgreSQL*
+
+You will also have to modify the Gorm connector : 
+
+```go
+	// MySQL connexion
+	Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+
+	// PostgreSQL connexion
+	//Gorm, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+```
+
 
 ## Usage
 

@@ -84,5 +84,5 @@ check_env:
 	@rm -f .env
 	@touch .env
 	@sleep 1
-	@printf '%s\n' 'APP_URL=http:localhost:1323' 'APP_NAME=Gechoplate' 'DB_HOST=db' 'DB_PORT=3306' 'DB_NAME=database' 'DB_USER=user' 'DB_PASSWORD=password' >> .env
+	@printf '%s\n' 'APP_URL=http:localhost:1323' 'APP_NAME=Gechoplate' ' ' 'DB_HOST=db' 'DB_NAME=database' 'DB_USER=user' 'DB_PASSWORD=password' 'DB_PORT=3306'  >> .env
 	@echo "${GREEN}The environment file has been successfully created, let's custom it ! ${GREEN}"

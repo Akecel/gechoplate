@@ -5,6 +5,7 @@ import (
 
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
+	//"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -29,7 +30,12 @@ func Connect() {
 
 	dsn := GetMySQLDataSourceName()
 
+	// MySQL connexion
 	Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+
+	// PostgreSQL connexion
+	//Gorm, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	
 	if err != nil {
 		panic(fmt.Errorf("Fatal error database connexion: %s", err.Error()))
 	}
