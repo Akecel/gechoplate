@@ -127,7 +127,7 @@ Chose your SQL containers in the *docker-compose* file depending on the database
 In addition, modify your *.env* file in order to fill in the PostgreSQL connector and change the port used :
 
 ```
-DB_CONNECTION=postgre
+DB_CONNECTION=postgres
 DB_HOST=db
 DB_NAME=database
 DB_USER=user
