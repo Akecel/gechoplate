@@ -35,7 +35,7 @@ func Connect() {
     case "mysql":
         Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
     case "postgres":
-        Gorm, err = gorm.Open(postgres.Open(dsn), &gorm.Config
+        Gorm, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	default:
         Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
     }
