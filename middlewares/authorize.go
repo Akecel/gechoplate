@@ -2,6 +2,7 @@ package middlewares
 
 import (
 	"gechoplate/controllers"
+	"strconv"
 
 	"net/http"
 
@@ -17,10 +18,11 @@ func CanManageUser(next echo.HandlerFunc) echo.HandlerFunc {
 		}
 		user := c.Get("user").(*jwt.Token)
 		claims := user.Claims.(jwt.MapClaims)
-		
+
 		admin := claims["admin"].(bool)
-		id := claims["id"].(uint)
-		if admin == true || id == strconv.Atoi(c.Param("id")) {
+		userID := claims["id"].(uint)
+		managedUserID, _ := strconv.Atoi(c.Param("id"))
+		if admin == true || userID == uint(managedUserID) {
 			return next(c)
 		}
 		return c.JSON(http.StatusUnauthorized, controllers.SetResponse(http.StatusUnauthorized, "Authorization error", "User is not an administrator and is not authorized to manage this data"))
@@ -28,13 +30,13 @@ func CanManageUser(next echo.HandlerFunc) echo.HandlerFunc {
 }
 
 // CanManageData check if the requested user data belongs to the current user or if it is an administrator.
-func CanManageData(authorID) (bool) {
+func CanManageData(c echo.Context, authorID uint) bool {
 	user := c.Get("user").(*jwt.Token)
 	claims := user.Claims.(jwt.MapClaims)
-	
+
 	admin := claims["admin"].(bool)
-	id := claims["id"].(uint)
-	if admin == true || id == authorID {
+	userID := claims["id"].(uint)
+	if admin == true || userID == authorID {
 		return true
 	}
 	return false
