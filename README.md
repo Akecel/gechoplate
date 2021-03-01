@@ -86,7 +86,7 @@ DB_PORT=3306
 
 By default Gechoplate uses MySQL, however you can use PostgreSQL very easily if you wish to do so : 
 
-Comment/uncomment the different SQL containers in the *docker-compose* file depending on the database system you want to use :
+* Comment/uncomment the different SQL containers in the *docker-compose* file depending on the database system you want to use :
 
 ```yml
   # MySQL Support
@@ -117,19 +117,17 @@ Comment/uncomment the different SQL containers in the *docker-compose* file depe
   #   ports:
   #     - 5432:5432
 ```
-
 *Don't forgret to change the "DB_PORT" in your .env file if you use PostgreSQL*
 
-You will also have to modify the Gorm connector : 
+* You will also have to modify the Gorm connector : 
 
 ```go
-	// MySQL connexion
-	Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+// MySQL connexion
+Gorm, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
-	// PostgreSQL connexion
-	//Gorm, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+// PostgreSQL connexion
+//Gorm, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 ```
-
 
 ## Usage
 
