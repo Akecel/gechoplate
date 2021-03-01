@@ -30,18 +30,13 @@ func CanManageUser(next echo.HandlerFunc) echo.HandlerFunc {
 
 // CanManageData check if the requested user data belongs to the current user or if it is an administrator.
 func CanManageData(authorID) (bool) {
-	return func(c echo.Context) error {
-		if err := next(c); err != nil {
-			c.Error(err)
-		}
-		user := c.Get("user").(*jwt.Token)
-		claims := user.Claims.(jwt.MapClaims)
-		
-		admin := claims["admin"].(bool)
-		id := claims["id"].(uint)
-		if admin == true || id == authorID {
-			return true
-		}
-		return false
+	user := c.Get("user").(*jwt.Token)
+	claims := user.Claims.(jwt.MapClaims)
+	
+	admin := claims["admin"].(bool)
+	id := claims["id"].(uint)
+	if admin == true || id == authorID {
+		return true
 	}
+	return false
 }
